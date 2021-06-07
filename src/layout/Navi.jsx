@@ -17,12 +17,13 @@ export default function Navi() {
                         <Dropdown.Menu>
                             <Dropdown.Item>English</Dropdown.Item>
                             <Dropdown.Item>Russian</Dropdown.Item>
-                            <Dropdown.Item>Spanish</Dropdown.Item>
+                            <Dropdown.Item>Turkish</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
 
                     <Menu.Item>
                         <Button primary>Sign Up</Button>
+                        <Button>Log-in</Button>
                     </Menu.Item>
                 </Menu.Menu>
             </Menu>

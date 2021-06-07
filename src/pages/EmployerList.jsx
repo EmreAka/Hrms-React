@@ -1,42 +1,44 @@
 import React, { useState, useEffect } from 'react'
+import EmployerService from '../services/employerService'
 import { Icon, Label, Menu, Table, Button, Header } from 'semantic-ui-react'
-import JobAdvertisementService from '../services/jobAdvertisementService'
 
-export default function JobAdvertisement() {
+export default function EmployerList() {
 
-    const [jobAdvertisements, setJobAdvertisement] = useState([])
+    const [employers, setEmployer] = useState([])
     useEffect(() => {
-        let jobAdvertisementService = new JobAdvertisementService()
-        jobAdvertisementService.getJobAdvertisements().then(result => setJobAdvertisement(result.data.data))
-    }, [])
+        let employerService = new EmployerService()
+        employerService.getEmployers().then(result => setEmployer(result.data.data))
+    }
+        , [])
+
 
     return (
         <div>
             <Header as="h2">
                 <Icon name="list alternate outline" />
-                <Header.Content>Job List</Header.Content>
+                <Header.Content>Employer List</Header.Content>
             </Header>
             <Table celled>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Campany Name</Table.HeaderCell>
-                        <Table.HeaderCell>Job Position</Table.HeaderCell>
-                        <Table.HeaderCell>Job Description</Table.HeaderCell>
-                        <Table.HeaderCell>City</Table.HeaderCell>
-                        <Table.HeaderCell>Detail</Table.HeaderCell>
+                        <Table.HeaderCell>Web Site</Table.HeaderCell>
+                        <Table.HeaderCell>Phone Numbers</Table.HeaderCell>
+                        <Table.HeaderCell>Jobs</Table.HeaderCell>
+                        <Table.HeaderCell>View</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
                 <Table.Body>
                     {
-                        jobAdvertisements.map(jobAdvertisement => (
+                        employers.map(employer => (
 
-                            <Table.Row key={jobAdvertisement.id}>
-                                <Table.Cell>{jobAdvertisement.employer.companyName}</Table.Cell>
-                                <Table.Cell>{jobAdvertisement.jobPosition.position}</Table.Cell>
-                                <Table.Cell>{jobAdvertisement.description}</Table.Cell>
-                                <Table.Cell>{jobAdvertisement.city.cityName}</Table.Cell>
-                                <Table.Cell><Button>Details</Button></Table.Cell>
+                            <Table.Row key={employer.id}>
+                                <Table.Cell>{employer.companyName}</Table.Cell>
+                                <Table.Cell>{employer.webSite}</Table.Cell>
+                                <Table.Cell>{employer.phoneNumber}</Table.Cell>
+                                <Table.Cell>{employer.jobs}</Table.Cell>
+                                <Table.Cell><Button>View</Button></Table.Cell>
                             </Table.Row>
 
 
