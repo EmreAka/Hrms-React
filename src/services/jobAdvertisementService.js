@@ -12,4 +12,8 @@ export default class JobAdvertisement {
     findAllByEmployerIdAndActiveTrue(id){
         return axios.get("http://localhost:8080/api/jobs/findAllByEmployerIdAndActiveTrue?employerId=" + id)
     }
+
+    addJobAdvertisement(jobAdvertisement){
+        return axios.post("http://localhost:8080/api/jobs/add", jobAdvertisement)
+    }
 }

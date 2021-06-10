@@ -12,4 +12,8 @@ export default class CvService{
     getCvsById(cvId){
         return axios.get("http://localhost:8080/api/cvs/findAllById?id=" + cvId)
     }
+
+    addCv(cv){
+        return axios.post("http://localhost:8080//api/cvs/add", cv)
+    }
 }
