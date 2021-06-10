@@ -1,40 +1,46 @@
-import React, {useEffect, useState} from 'react'
-import EmployeeService from "../services/employeeService";
-import {Button, Header, Icon, Table} from "semantic-ui-react";
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router'
+import CvService from '../services/cvService'
+import { Button, Header, Icon, Table } from "semantic-ui-react";
+import { Link } from 'react-router-dom';
 
-export default function EmployeeList() {
+export default function EmployeeViewCv() {
 
-    const [employees, setEmployees] = useState([])
+    let { id } = useParams()
+
+    const [employeeCvs, setEmployeeCvs] = useState([])
     useEffect(() => {
-        let employeeService = new EmployeeService()
-        employeeService.getEmployees().then(result => setEmployees(result.data.data))
+        let cvService = new CvService()
+        cvService.getCvsByEmployeeId(id).then(result => setEmployeeCvs(result.data.data))
     }, [])
 
     return (
         <div>
             <Header as="h2">
-                <Icon name="list alternate outline"/>
-                <Header.Content>Employee List</Header.Content>
+                <Icon name="list alternate outline" />
+                <Header.Content>Employee's Cvs</Header.Content>
             </Header>
             <Table celled>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>First Name</Table.HeaderCell>
                         <Table.HeaderCell>Last Name</Table.HeaderCell>
-                        <Table.HeaderCell>Birth Year</Table.HeaderCell>
-                        <Table.HeaderCell>View Cv</Table.HeaderCell>
+                        <Table.HeaderCell>Description</Table.HeaderCell>
+                        <Table.HeaderCell>Created Date</Table.HeaderCell>
+                        <Table.HeaderCell>View</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
                 <Table.Body>
                     {
-                        employees.map(employee => (
+                        employeeCvs.map(cv => (
 
-                            <Table.Row key={employee.id}>
-                                <Table.Cell>{employee.firstName}</Table.Cell>
-                                <Table.Cell>{employee.lastName}</Table.Cell>
-                                <Table.Cell>{employee.birthYear}</Table.Cell>
-                                <Table.Cell><Button>View Cv</Button></Table.Cell>
+                            <Table.Row key={cv.id}>
+                                <Table.Cell>{cv.employee.firstName}</Table.Cell>
+                                <Table.Cell>{cv.employee.lastName}</Table.Cell>
+                                <Table.Cell>{cv.description}</Table.Cell>
+                                <Table.Cell>{cv.createdDate}</Table.Cell>
+                                <Table.Cell><Link to={`/employees/${id}/${cv.id}`}><Button>View</Button></Link></Table.Cell>
                             </Table.Row>
 
 
