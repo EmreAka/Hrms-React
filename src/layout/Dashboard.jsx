@@ -7,6 +7,8 @@ import { Route } from 'react-router'
 import EmployeeList from "../pages/EmployeeList";
 import EmployeeViewCvs from '../pages/EmployeeViewCvs'
 import EmployeeCv from '../pages/EmployeeCv'
+import JobAdvertisementDetail from '../pages/JobAdvertisementDetail'
+import EmployerDetails from '../pages/EmployerDetails'
 
 export default function Dashboard() {
     return (
@@ -19,7 +21,9 @@ export default function Dashboard() {
                     </Grid.Column>
                     <Grid.Column width={12}>
                         <Route exact path ={"/jobs"} component = {JobAdvertisementList}/>
+                        <Route exact path={"/jobs/:id"} component= {JobAdvertisementDetail}/>
                         <Route exact path = {"/employers"} component={EmployerList}/>
+                        <Route exact path = {"/employers/:id"} component ={EmployerDetails}/>
                         <Route exact path = {"/employees"} component={EmployeeList}/>
                         <Route exact path = {"/employees/:id"} component={EmployeeViewCvs}/>
                         <Route exact path = {"/employees/:id/:cvId"} component={EmployeeCv}/>

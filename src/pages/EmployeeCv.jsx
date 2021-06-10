@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import CvService from '../services/cvService'
-import { Button, Header, Icon, Table } from "semantic-ui-react";
+import { Button, Header, Icon, Table, Card, Image } from "semantic-ui-react";
 import EducationService from '../services/educationService';
 import JobExperienceService from '../services/jobExperienceService';
 import TechOrProgrammingLangService from '../services/techOrProgrammingLangService';
@@ -44,8 +44,26 @@ export default function EmployeeCv() {
 
     return (
         <div>
-            <Header as="h2">
-                <Icon name="list alternate outline" />
+            <Card>
+                <Image src={cv.photo} wrapped ui={false} />
+                <Card.Content>
+                    <Card.Header>{cv.employee?.firstName}</Card.Header>
+                    <Card.Meta>
+                        <span className='date'>Joined in 2015</span>
+                    </Card.Meta>
+                    <Card.Description>
+                        {cv.description}
+      </Card.Description>
+                </Card.Content>
+                <Card.Content extra>
+                    <a>
+                        <Icon name='user' />
+        22 Friends
+      </a>
+                </Card.Content>
+            </Card>
+            <Header as="h1">
+                <Icon name="clipboard" />
                 <Header.Content>Employee's Cv</Header.Content>
             </Header>
             <Table celled>

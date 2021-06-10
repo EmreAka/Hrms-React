@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { Icon, Label, Menu, Table, Button, Header } from 'semantic-ui-react'
 import JobAdvertisementService from '../services/jobAdvertisementService'
 
@@ -36,7 +37,7 @@ export default function JobAdvertisement() {
                                 <Table.Cell>{jobAdvertisement.jobPosition.position}</Table.Cell>
                                 <Table.Cell>{jobAdvertisement.description}</Table.Cell>
                                 <Table.Cell>{jobAdvertisement.city.cityName}</Table.Cell>
-                                <Table.Cell><Button>View</Button></Table.Cell>
+                                <Table.Cell><Link to={`/jobs/${jobAdvertisement.id}`}><Button>View</Button></Link></Table.Cell>
                             </Table.Row>
 
 

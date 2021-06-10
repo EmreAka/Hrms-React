@@ -1,47 +1,48 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-import CvService from '../services/cvService'
-import { Button, Header, Icon, Table } from "semantic-ui-react";
-import { Link } from 'react-router-dom';
+import JobAdvertisement from '../services/jobAdvertisementService'
+import { Icon, Label, Menu, Table, Button, Header } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
-export default function EmployeeViewCv() {
-
+export default function EmployerDetails() {
     let { id } = useParams()
 
-    const [employeeCvs, setEmployeeCvs] = useState([])
+    const [jobAdvertisements, setJobAdvertisements] = useState([])
     useEffect(() => {
-        let cvService = new CvService()
-        cvService.getCvsByEmployeeId(id).then(result => setEmployeeCvs(result.data.data))
+        let jobAdvertisementService = new JobAdvertisement()
+        jobAdvertisementService.findAllByEmployerIdAndActiveTrue(id).then(result => setJobAdvertisements(result.data.data))
     }, [])
+
 
     return (
         <div>
             <Header as="h2">
-                <Icon name="clipboard" />
-                <Header.Content>Employee's Cvs</Header.Content>
+                <Icon name="list alternate outline" />
+                <Header.Content>Job List</Header.Content>
             </Header>
             <Table celled>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell>First Name</Table.HeaderCell>
-                        <Table.HeaderCell>Last Name</Table.HeaderCell>
-                        <Table.HeaderCell>Description</Table.HeaderCell>
-                        <Table.HeaderCell>Created Date</Table.HeaderCell>
+                        <Table.HeaderCell>Campany Name</Table.HeaderCell>
+                        <Table.HeaderCell>Job Position</Table.HeaderCell>
+                        <Table.HeaderCell>Job Description</Table.HeaderCell>
+                        <Table.HeaderCell>City</Table.HeaderCell>
                         <Table.HeaderCell>View</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
                 <Table.Body>
                     {
-                        employeeCvs.map(cv => (
+                        jobAdvertisements.map(jobAdvertisement => (
 
-                            <Table.Row key={cv.id}>
-                                <Table.Cell>{cv.employee.firstName}</Table.Cell>
-                                <Table.Cell>{cv.employee.lastName}</Table.Cell>
-                                <Table.Cell>{cv.description}</Table.Cell>
-                                <Table.Cell>{cv.createdDate}</Table.Cell>
-                                <Table.Cell><Link to={`/employees/${id}/${cv.id}`}><Button>View</Button></Link></Table.Cell>
+                            <Table.Row key={jobAdvertisement.id}>
+                                <Table.Cell>{jobAdvertisement.employer.companyName}</Table.Cell>
+                                <Table.Cell>{jobAdvertisement.jobPosition.position}</Table.Cell>
+                                <Table.Cell>{jobAdvertisement.description}</Table.Cell>
+                                <Table.Cell>{jobAdvertisement.city.cityName}</Table.Cell>
+                                <Table.Cell><Link to={`/jobs/${jobAdvertisement.id}`}><Button>View</Button></Link></Table.Cell>
                             </Table.Row>
+
 
 
                         ))
