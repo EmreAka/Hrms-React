@@ -23,7 +23,7 @@ export default function JobAdvertisement() {
                         <Table.HeaderCell>Job Position</Table.HeaderCell>
                         <Table.HeaderCell>Job Description</Table.HeaderCell>
                         <Table.HeaderCell>City</Table.HeaderCell>
-                        <Table.HeaderCell>Detail</Table.HeaderCell>
+                        <Table.HeaderCell>View</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
@@ -36,7 +36,7 @@ export default function JobAdvertisement() {
                                 <Table.Cell>{jobAdvertisement.jobPosition.position}</Table.Cell>
                                 <Table.Cell>{jobAdvertisement.description}</Table.Cell>
                                 <Table.Cell>{jobAdvertisement.city.cityName}</Table.Cell>
-                                <Table.Cell><Button>Details</Button></Table.Cell>
+                                <Table.Cell><Button>View</Button></Table.Cell>
                             </Table.Row>
 
 

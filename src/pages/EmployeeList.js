@@ -1,44 +1,41 @@
-import React, { useState, useEffect } from 'react'
-import EmployerService from '../services/employerService'
-import { Icon, Label, Menu, Table, Button, Header } from 'semantic-ui-react'
+import React, {useEffect, useState} from 'react'
+import EmployeeService from "../services/employeeService";
+import {Button, Header, Icon, Table} from "semantic-ui-react";
 
-export default function EmployerList() {
+export default function EmployeeList() {
 
-    const [employers, setEmployer] = useState([])
+    const [employees, setEmployees] = useState([])
     useEffect(() => {
-        let employerService = new EmployerService()
-        employerService.getEmployers().then(result => setEmployer(result.data.data))
-    }
-        , [])
-
+        let employeeService = new EmployeeService()
+        employeeService.getEmployees().then(result => setEmployees(result.data.data))
+    }, [])
 
     return (
         <div>
             <Header as="h2">
-                <Icon name="list alternate outline" />
-                <Header.Content>Employer List</Header.Content>
+                <Icon name="list alternate outline"/>
+                <Header.Content>Employee List</Header.Content>
             </Header>
             <Table celled>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell>Campany Name</Table.HeaderCell>
-                        <Table.HeaderCell>Web Site</Table.HeaderCell>
-                        <Table.HeaderCell>Phone Numbers</Table.HeaderCell>
-                        <Table.HeaderCell>View</Table.HeaderCell>
+                        <Table.HeaderCell>First Name</Table.HeaderCell>
+                        <Table.HeaderCell>Last Name</Table.HeaderCell>
+                        <Table.HeaderCell>Birth Year</Table.HeaderCell>
+                        <Table.HeaderCell>View Cv</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
                 <Table.Body>
                     {
-                        employers.map(employer => (
+                        employees.map(employee => (
 
-                            <Table.Row key={employer.id}>
-                                <Table.Cell>{employer.companyName}</Table.Cell>
-                                <Table.Cell>{employer.webSite}</Table.Cell>
-                                <Table.Cell>{employer.phoneNumber}</Table.Cell>
-                                <Table.Cell><Button>View</Button></Table.Cell>
+                            <Table.Row key={employee.id}>
+                                <Table.Cell>{employee.firstName}</Table.Cell>
+                                <Table.Cell>{employee.lastName}</Table.Cell>
+                                <Table.Cell>{employee.birthYear}</Table.Cell>
+                                <Table.Cell><Button>View Cv</Button></Table.Cell>
                             </Table.Row>
-
 
 
                         ))
