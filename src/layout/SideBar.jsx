@@ -10,6 +10,10 @@ export default function SideBar() {
                            name='Job Advertisements'
                 />
                 <Icon name="list alternate outline"/>
+                <Menu.Item as={NavLink} to="/jobadd"
+                           name='Job Add'
+                />
+                <Icon name="list alternate outline"/>
                 <Menu.Item as={NavLink} to="/employers"
                            name='Employers'
                 />
