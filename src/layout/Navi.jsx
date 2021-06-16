@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { Button, Dropdown, Menu } from 'semantic-ui-react'
+import { Button, Dropdown, Menu, Icon } from 'semantic-ui-react'
 import SignedOut from './SignedOut'
 import SignedIn from './SignedIn'
+import { Link } from 'react-router-dom';
+
 export default function Navi() {
 
     const [isAuthenticanted, setisAuthenticanted] = useState(true)
@@ -16,18 +18,20 @@ export default function Navi() {
 
     return (
         <div>
-            <Menu fixed="top">
-                <Menu.Item
-                    name='home'
-                />
-                <Menu.Item
-                    name='messages'
-                />
+            <Menu fixed="top" size='tiny' inverted>
+                <Link to={`/home`}>
+                    <Button animated color = 'black'>
+                        <Button.Content visible>Home</Button.Content>
+                        <Button.Content hidden>
+                            <Icon name='home' />
+                        </Button.Content>
+                    </Button>
+                </Link>
 
                 <Menu.Menu position='right'>
 
                     <Menu.Item>
-                        {isAuthenticanted?<SignedIn signOut = {handleSignedOut} bisey = "1"/>:<SignedOut signIn = {handleSignedIn} bisey = "2"/>}
+                        {isAuthenticanted ? <SignedIn signOut={handleSignedOut} bisey="1" /> : <SignedOut signIn={handleSignedIn} bisey="2" />}
                     </Menu.Item>
                 </Menu.Menu>
             </Menu>

@@ -20,7 +20,7 @@ export default function EmployerDetails() {
                 <Icon name="list alternate outline" />
                 <Header.Content>Job List</Header.Content>
             </Header>
-            <Table celled>
+            <Table celled color = 'grey' inverted>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Campany Name</Table.HeaderCell>

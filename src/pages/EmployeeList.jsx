@@ -18,7 +18,7 @@ export default function EmployeeList() {
                 <Icon name="list alternate outline" />
                 <Header.Content>Employee List</Header.Content>
             </Header>
-            <Table celled>
+            <Table celled color = 'grey' inverted>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>First Name</Table.HeaderCell>

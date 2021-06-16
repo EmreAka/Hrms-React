@@ -44,7 +44,7 @@ export default function EmployeeCv() {
 
     return (
         <div>
-            <Card>
+            <Card color = 'grey'>
                 <Image src={cv.photo} wrapped ui={false} />
                 <Card.Content>
                     <Card.Header>{cv.employee?.firstName}</Card.Header>
@@ -66,7 +66,7 @@ export default function EmployeeCv() {
                 <Icon name="clipboard" />
                 <Header.Content>Employee's Cv</Header.Content>
             </Header>
-            <Table celled>
+            <Table celled color = 'grey' inverted>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>First Name</Table.HeaderCell>
@@ -112,7 +112,7 @@ export default function EmployeeCv() {
                 <Icon name="list alternate outline" />
                 <Header.Content>Educations</Header.Content>
             </Header>
-            <Table celled>
+            <Table celled color = 'grey' inverted>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>School Name</Table.HeaderCell>
@@ -161,7 +161,7 @@ export default function EmployeeCv() {
                 <Icon name="list alternate outline" />
                 <Header.Content>Job Experiences</Header.Content>
             </Header>
-            <Table celled>
+            <Table celled color = 'grey' inverted>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Company Name</Table.HeaderCell>
@@ -189,7 +189,7 @@ export default function EmployeeCv() {
                 <Icon name="list alternate outline" />
                 <Header.Content>Technology and Programming Languages</Header.Content>
             </Header>
-            <Table celled>
+            <Table celled color = 'grey' inverted>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Technology Name</Table.HeaderCell>
@@ -211,7 +211,7 @@ export default function EmployeeCv() {
                 <Icon name="list alternate outline" />
                 <Header.Content>Foreign Languages</Header.Content>
             </Header>
-            <Table celled>
+            <Table celled color = 'grey' inverted>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Language</Table.HeaderCell>

@@ -19,7 +19,7 @@ export default function EmployerList() {
                 <Icon name="list alternate outline" />
                 <Header.Content>Employer List</Header.Content>
             </Header>
-            <Table celled>
+            <Table celled color = 'grey' inverted>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Campany Name</Table.HeaderCell>

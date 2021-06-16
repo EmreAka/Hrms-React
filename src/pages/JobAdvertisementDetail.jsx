@@ -17,7 +17,7 @@ export default function JobAdvertisementDetail() {
                 <Icon name="clipboard" />
                 <Header.Content>Job Details</Header.Content>
             </Header>
-            <Table celled>
+            <Table celled color = 'grey' inverted>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Description</Table.HeaderCell>

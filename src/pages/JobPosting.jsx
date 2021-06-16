@@ -91,7 +91,7 @@ export default function JobPosting() {
 
     return (
         <div>
-            <Card fluid>
+            <Card fluid color = 'black'>
                 <Card.Content header='Post a job' />
                 <Card.Content>
                     <Form onSubmit={formik.handleSubmit}>
