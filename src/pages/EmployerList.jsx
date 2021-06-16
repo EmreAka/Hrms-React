@@ -37,7 +37,16 @@ export default function EmployerList() {
                                 <Table.Cell>{employer.companyName}</Table.Cell>
                                 <Table.Cell>{employer.webSite}</Table.Cell>
                                 <Table.Cell>{employer.phoneNumber}</Table.Cell>
-                                <Table.Cell><Link to={`/employers/${employer.id}`}><Button>View Job Advertisements</Button></Link></Table.Cell>
+                                <Table.Cell>
+                                    <Link to={`/employers/${employer.id}`}>
+                                        <Button animated color = 'black'>
+                                            <Button.Content visible>View Job Advertisements</Button.Content>
+                                            <Button.Content hidden>
+                                                <Icon name='arrow right' />
+                                            </Button.Content>
+                                        </Button>
+                                    </Link>
+                                </Table.Cell>
                             </Table.Row>
 
 

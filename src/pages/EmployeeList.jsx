@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import EmployeeService from "../services/employeeService";
-import {Button, Header, Icon, Table} from "semantic-ui-react";
+import { Button, Header, Icon, Table } from "semantic-ui-react";
 import { Link } from 'react-router-dom';
+import CvService from '../services/cvService';
 
 export default function EmployeeList() {
 
@@ -14,7 +15,7 @@ export default function EmployeeList() {
     return (
         <div>
             <Header as="h2">
-                <Icon name="list alternate outline"/>
+                <Icon name="list alternate outline" />
                 <Header.Content>Employee List</Header.Content>
             </Header>
             <Table celled>
@@ -35,7 +36,14 @@ export default function EmployeeList() {
                                 <Table.Cell>{employee.firstName}</Table.Cell>
                                 <Table.Cell>{employee.lastName}</Table.Cell>
                                 <Table.Cell>{employee.birthYear}</Table.Cell>
-                                <Table.Cell><Link to = {`/employees/${employee.id}`}><Button>View Cvs</Button></Link></Table.Cell>
+                                <Table.Cell>
+                                    <Link to={`/employees/${employee.id}`}>
+                                        <Button animated color='black'>
+                                            <Button.Content visible>View Cvs</Button.Content>
+                                            <Button.Content hidden><Icon name='arrow right' /></Button.Content>
+                                        </Button>
+                                    </Link>
+                                </Table.Cell>
                             </Table.Row>
 
 

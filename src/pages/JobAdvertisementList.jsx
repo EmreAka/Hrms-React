@@ -37,7 +37,15 @@ export default function JobAdvertisement() {
                                 <Table.Cell>{jobAdvertisement.jobPosition.position}</Table.Cell>
                                 <Table.Cell>{jobAdvertisement.description}</Table.Cell>
                                 <Table.Cell>{jobAdvertisement.city.cityName}</Table.Cell>
-                                <Table.Cell><Link to={`/jobs/${jobAdvertisement.id}`}><Button>View</Button></Link></Table.Cell>
+                                <Table.Cell>
+                                    <Link to={`/jobs/${jobAdvertisement.id}`}>
+                                        <Button animated color = 'black'>
+                                            <Button.Content visible>View</Button.Content>
+                                            <Button.Content hidden><Icon name='arrow right' />
+                                            </Button.Content>
+                                        </Button>
+                                    </Link>
+                                </Table.Cell>
                             </Table.Row>
 
 
