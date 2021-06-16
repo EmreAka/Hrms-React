@@ -42,7 +42,7 @@ export default function JobPosting() {
         onSubmit: (values) => {
             values.employer = {id: 2};
             jobAdvertisementService.addJobAdvertisement(values).then((result) => console.log(result.data.data));
-            alert("İş ilanı eklendi personelin onayı ardından listelenecektir");
+            alert("Job Advertisement is added. It is going be listed after validation.");
             history.push("/jobs");
         },
     });
