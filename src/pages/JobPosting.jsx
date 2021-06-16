@@ -13,15 +13,15 @@ export default function JobPosting() {
     let jobAdvertisementService = new JobAdvertisementService()
 
     const JobAdvertAddSchema = Yup.object().shape({
-        latestApplyTime: Yup.date().nullable().required("Bu alanın doldurulması zorunludur"),
-        description: Yup.string().required("Bu alanın doldurulması zorunludur"),
-        jobPosition: new Yup.ObjectSchema().required("Bu alanın doldurulması zorunludur"),
-        workTime: new Yup.ObjectSchema().required("Bu alanın doldurulması zorunludur"),
-        workPlace: new Yup.ObjectSchema().required("Bu alanın doldurulması zorunludur"),
-        openPositions: Yup.string().required("Posizyon sayısı zorunludur").min(1, "Posizyon sayısı 1 den küçük olamaz"),
-        city: new Yup.ObjectSchema().required("Bu alanın doldurulması zorunludur"),
-        minSalary: Yup.number().min(0, "0 Dan az olamaz").required("Bu alan zorunludur"),
-        maxSalary: Yup.number().min(0, "0 Dan az olamaz").required("Bu alan zorunludur")
+        latestApplyTime: Yup.date().nullable().required("You have to fill this field"),
+        description: Yup.string().required("You have to fill this field"),
+        jobPosition: new Yup.ObjectSchema().required("You have to fill this field"),
+        workTime: new Yup.ObjectSchema().required("You have to fill this field"),
+        workPlace: new Yup.ObjectSchema().required("You have to fill this field"),
+        openPositions: Yup.string().required("You have to fill this field").min(1, "It must be higher than 1"),
+        city: new Yup.ObjectSchema().required("You have to fill this field"),
+        minSalary: Yup.number().min(0, "It cannot be lower than 0"),
+        maxSalary: Yup.number().min(0, "It cannot be lower than 0")
     });
 
     const history = useHistory()
@@ -92,15 +92,15 @@ export default function JobPosting() {
     return (
         <div>
             <Card fluid>
-                <Card.Content header='İş ilanı Ekle' />
+                <Card.Content header='Post a job' />
                 <Card.Content>
                     <Form onSubmit={formik.handleSubmit}>
                         <Form.Field style={{ marginBottom: "1rem" }}>
-                            <label>İş Posisyonu</label>
+                            <label>Job Position</label>
                             <Dropdown
                                 clearable
                                 item
-                                placeholder="İş pozisyonu"
+                                placeholder="Job Position"
                                 search
                                 selection
                                 onChange={(event, data) =>
@@ -118,11 +118,11 @@ export default function JobPosting() {
                             )}
                         </Form.Field>
                         <Form.Field>
-                            <label>Şehir</label>
+                            <label>City</label>
                             <Dropdown
                                 clearable
                                 item
-                                placeholder="Şehir"
+                                placeholder="City"
                                 search
                                 selection
                                 onChange={(event, data) =>
@@ -140,11 +140,11 @@ export default function JobPosting() {
                             )}
                         </Form.Field>
                         <Form.Field>
-                            <label>Çalışma yeri</label>
+                            <label>Work Place</label>
                             <Dropdown
                                 clearable
                                 item
-                                placeholder="Çalışma yeri"
+                                placeholder="Work Place"
                                 search
                                 selection
                                 onChange={(event, data) =>
@@ -162,11 +162,11 @@ export default function JobPosting() {
                             )}
                         </Form.Field>
                         <Form.Field>
-                            <label>Çalışma Süresi</label>
+                            <label>Work Time</label>
                             <Dropdown
                                 clearable
                                 item
-                                placeholder="Çalışma Süresi"
+                                placeholder="Work Time"
                                 search
                                 selection
                                 onChange={(event, data) =>
@@ -184,11 +184,11 @@ export default function JobPosting() {
                         <Form.Field>
                             <Grid stackable>
                                 <Grid.Column width={8}>
-                                    <label style={{ fontWeight: "bold" }}>Maaş aralığı MİNİMUM</label>
+                                    <label style={{ fontWeight: "bold" }}>Minimum Salary</label>
                                     <Input
                                         style={{ width: "100%" }}
                                         type="number"
-                                        placeholder="Maaş aralığı MİNİMUM"
+                                        placeholder="Minimum Salary"
                                         value={formik.values.minSalary}
                                         name="minSalary"
                                         onChange={formik.handleChange}
@@ -202,11 +202,11 @@ export default function JobPosting() {
                                     )}
                                 </Grid.Column>
                                 <Grid.Column width={8}>
-                                    <label style={{ fontWeight: "bold" }}>Maaş aralığı MAKSİMUM</label>
+                                    <label style={{ fontWeight: "bold" }}>Maximum Salary</label>
                                     <Input
                                         style={{ width: "100%" }}
                                         type="number"
-                                        placeholder="Maaş aralığı MAKSİMUM"
+                                        placeholder="Maximum Salary"
                                         value={formik.values.maxSalary}
                                         name="maxSalary"
                                         onChange={formik.handleChange}
@@ -225,7 +225,7 @@ export default function JobPosting() {
                         <Form.Field>
                             <Grid stackable>
                                 <Grid.Column width={8}>
-                                    <label style={{ fontWeight: "bold" }}>Açık Posisyon sayısı</label>
+                                    <label style={{ fontWeight: "bold" }}>Open Positions</label>
                                     <Input
                                         style={{ width: "100%" }}
                                         id="openPositions"
@@ -235,7 +235,7 @@ export default function JobPosting() {
                                         value={formik.values.openPositions}
                                         onBlur={formik.handleBlur}
                                         type="number"
-                                        placeholder="Açık Posisyon sayısı"
+                                        placeholder="Open Positions"
                                     />
                                     {formik.errors.openPositions && formik.touched.openPositions && (
                                         <div className={"ui pointing red basic label"}>
@@ -244,7 +244,7 @@ export default function JobPosting() {
                                     )}
                                 </Grid.Column>
                                 <Grid.Column width={8}>
-                                    <label style={{ fontWeight: "bold" }}>Son başvuru tarihi</label>
+                                    <label style={{ fontWeight: "bold" }}>Deadline</label>
                                     <Input
                                         style={{ width: "100%" }}
                                         type="date"
@@ -255,7 +255,7 @@ export default function JobPosting() {
                                         value={formik.values.latestApplyTime}
                                         onBlur={formik.handleBlur}
                                         name="latestApplyTime"
-                                        placeholder="Son başvuru tarihi"
+                                        placeholder="Deadline"
                                     />
                                     {formik.errors.latestApplyTime && formik.touched.latestApplyTime && (
                                         <div className={"ui pointing red basic label"}>
@@ -267,9 +267,9 @@ export default function JobPosting() {
                         </Form.Field>
 
                         <Form.Field>
-                            <label>Açıklama</label>
+                            <label>Description</label>
                             <TextArea
-                                placeholder="Açıklama"
+                                placeholder="Description"
                                 style={{ minHeight: 100 }}
                                 error={Boolean(formik.errors.description).toString()}
                                 value={formik.values.description}
@@ -284,7 +284,7 @@ export default function JobPosting() {
                             )}
                         </Form.Field>
                         <Button
-                            content="Ekle"
+                            content="Add"
                             labelPosition="right"
                             icon="add"
                             positive
