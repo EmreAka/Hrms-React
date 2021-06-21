@@ -4,8 +4,8 @@ import { Button } from 'semantic-ui-react'
 export default function SignedOut(props) {
     return (
         <div>
-            <Button onClick = {props.signIn} primary>Log in</Button>
-            <Button primary style={{ marginLeft: '0.5em' }}>Register</Button>
+            <Button color = 'white' onClick = {props.signIn}    >Log in</Button>
+            <Button color = 'white' style={{ marginLeft: '0.5em' }}>Register</Button>
         </div>
     )
 }

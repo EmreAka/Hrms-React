@@ -6,6 +6,7 @@ import EducationService from '../services/educationService';
 import JobExperienceService from '../services/jobExperienceService';
 import TechOrProgrammingLangService from '../services/techOrProgrammingLangService';
 import ForeignLanguageService from '../services/foreignLanguageService';
+import CV from 'react-cv'
 
 export default function EmployeeCv() {
 
@@ -41,10 +42,40 @@ export default function EmployeeCv() {
         foreignLanguageService.getAllByCvId(cvId).then(result => setForeignLanguages(result.data.data))
     }, [])
 
+    const edus = educations.map(edu => (
+        {
+            title: edu.schoolName,
+            authority: 'University',
+            authorityWebSite: 'https://sample.edu',
+            rightSide: `${edu.beginDate} - ${edu.finishDate}`
+        }
+    ))
+    
+    const exps = jobExperiences.map(jobexp => (
+        {
+            title: `${jobexp.workplaceName}`,
+            description: 'I\'m working as a lead developer yeeeey!',
+            companyWebSite: 'http://somecompanyexample.com',
+            companyMeta: '',
+            datesBetween: `${jobexp.beginDate} - ${jobexp.finishDate}`,
+            descriptionTags: [`${jobexp.jobPosition.position}`]
+          }
+    ))
+
+    const langs = foreignLanguages.map(lang => (
+        {
+            authority: `${lang.languageName}`,
+            authorityMeta: `Level: ${lang.languageLevel}`
+        }
+    ))
+    
+    const techsandprogs = techOrProgrammingLangs.map(techs => (
+        `${techs.technologyOrProgrammingLanguage}`
+    ))
 
     return (
         <div>
-            <Card color = 'grey'>
+            {/* <Card color='grey'>
                 <Image src={cv.photo} wrapped ui={false} />
                 <Card.Content>
                     <Card.Header>{cv.employee?.firstName}</Card.Header>
@@ -53,20 +84,20 @@ export default function EmployeeCv() {
                     </Card.Meta>
                     <Card.Description>
                         {cv.description}
-      </Card.Description>
+                    </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
                     <a>
                         <Icon name='user' />
-        22 Friends
-      </a>
+                        22 Friends
+                    </a>
                 </Card.Content>
             </Card>
             <Header as="h1">
                 <Icon name="clipboard" />
                 <Header.Content>Employee's Cv</Header.Content>
             </Header>
-            <Table celled color = 'grey' inverted>
+            <Table celled color='grey' inverted>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>First Name</Table.HeaderCell>
@@ -89,30 +120,12 @@ export default function EmployeeCv() {
                     </Table.Row>
                 </Table.Body>
 
-                {/* <Table.Footer>
-                    <Table.Row>
-                        <Table.HeaderCell colSpan='3'>
-                            <Menu floated='right' pagination>
-                                <Menu.Item as='a' icon>
-                                    <Icon name='chevron left' />
-                                </Menu.Item>
-                                <Menu.Item as='a'>1</Menu.Item>
-                                <Menu.Item as='a'>2</Menu.Item>
-                                <Menu.Item as='a'>3</Menu.Item>
-                                <Menu.Item as='a'>4</Menu.Item>
-                                <Menu.Item as='a' icon>
-                                    <Icon name='chevron right' />
-                                </Menu.Item>
-                            </Menu>
-                        </Table.HeaderCell>
-                    </Table.Row>
-                </Table.Footer> */}
             </Table>
             <Header as="h2">
                 <Icon name="list alternate outline" />
                 <Header.Content>Educations</Header.Content>
             </Header>
-            <Table celled color = 'grey' inverted>
+            <Table celled color='grey' inverted>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>School Name</Table.HeaderCell>
@@ -129,39 +142,20 @@ export default function EmployeeCv() {
                                 <Table.Cell>{education.schoolName}</Table.Cell>
                                 <Table.Cell>{education.field}</Table.Cell>
                                 <Table.Cell>{education.beginDate}</Table.Cell>
-                                <Table.Cell>{education.finishDate}</Table.Cell>
+                                <Table.Cell>{education.finishDate === null ? "Countinue" : education.finishDate}</Table.Cell>
                             </Table.Row>
                         ))
                     }
 
 
                 </Table.Body>
-
-                {/* <Table.Footer>
-                    <Table.Row>
-                        <Table.HeaderCell colSpan='3'>
-                            <Menu floated='right' pagination>
-                                <Menu.Item as='a' icon>
-                                    <Icon name='chevron left' />
-                                </Menu.Item>
-                                <Menu.Item as='a'>1</Menu.Item>
-                                <Menu.Item as='a'>2</Menu.Item>
-                                <Menu.Item as='a'>3</Menu.Item>
-                                <Menu.Item as='a'>4</Menu.Item>
-                                <Menu.Item as='a' icon>
-                                    <Icon name='chevron right' />
-                                </Menu.Item>
-                            </Menu>
-                        </Table.HeaderCell>
-                    </Table.Row>
-                </Table.Footer> */}
             </Table>
 
             <Header as="h2">
                 <Icon name="list alternate outline" />
                 <Header.Content>Job Experiences</Header.Content>
             </Header>
-            <Table celled color = 'grey' inverted>
+            <Table celled color='grey' inverted>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Company Name</Table.HeaderCell>
@@ -177,7 +171,7 @@ export default function EmployeeCv() {
                             <Table.Row>
                                 <Table.Cell>{jobExperience.workplaceName}</Table.Cell>
                                 <Table.Cell>{jobExperience.beginDate}</Table.Cell>
-                                <Table.Cell>{jobExperience.finishDate}</Table.Cell>
+                                <Table.Cell>{jobExperience.finishDate === null ? "Countinue" : jobExperience.finishDate}</Table.Cell>
                                 <Table.Cell>{jobExperience.jobPosition.position}</Table.Cell>
                             </Table.Row>
                         ))
@@ -189,7 +183,7 @@ export default function EmployeeCv() {
                 <Icon name="list alternate outline" />
                 <Header.Content>Technology and Programming Languages</Header.Content>
             </Header>
-            <Table celled color = 'grey' inverted>
+            <Table celled color='grey' inverted>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Technology Name</Table.HeaderCell>
@@ -211,7 +205,7 @@ export default function EmployeeCv() {
                 <Icon name="list alternate outline" />
                 <Header.Content>Foreign Languages</Header.Content>
             </Header>
-            <Table celled color = 'grey' inverted>
+            <Table celled color='grey' inverted>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Language</Table.HeaderCell>
@@ -229,8 +223,52 @@ export default function EmployeeCv() {
                         ))
                     }
                 </Table.Body>
-            </Table>
+            </Table> */}
 
+            <CV
+                personalData={{
+                    name: cv.employee?.firstName,
+                    title: cv.description,
+                    image: cv.photo,
+                    contacts: [
+                        { type: 'email', value: cv.employee?.email },
+                        { type: 'linkedin', value: cv.linkedinLink },
+                        { type: 'github', value: cv.githubLink }
+                    ]
+                }}
+                sections={[{
+                    type: 'text',
+                    title: 'Career Profile',
+                    content: 'When I was child, I always want to be a developer.',
+                    icon: 'usertie'
+                },
+                {
+                    type: 'common-list',
+                    title: 'Education',
+                    icon: 'graduation',
+                    items: edus
+                },
+                {
+                    type: 'experiences-list',
+                    title: 'Experiences',
+                    icon: 'archive',
+                    items: exps
+                  },
+                  {
+                    type: 'common-list',
+                    title: 'Languages',
+                    icon: 'language',
+                    items: langs
+                  },
+                  {
+                    type: 'tag-list',
+                    title: 'Skills Proficiency',
+                    icon: 'rocket',
+                    items: techsandprogs
+                  },
+                ]}
+                branding={false} // or false to hide it.
+            />
         </div>
     )
 }

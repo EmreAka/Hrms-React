@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import JobAdvertisement from '../services/jobAdvertisementService'
-import { Icon, Label, Menu, Table, Button, Header } from 'semantic-ui-react'
+import { Icon, Label, Menu, Table, Button, Header, Item } from 'semantic-ui-react'
 
 export default function JobAdvertisementDetail() {
     let { id } = useParams()
@@ -17,31 +17,25 @@ export default function JobAdvertisementDetail() {
                 <Icon name="clipboard" />
                 <Header.Content>Job Details</Header.Content>
             </Header>
-            <Table celled color = 'grey' inverted>
-                <Table.Header>
-                    <Table.Row>
-                        <Table.HeaderCell>Description</Table.HeaderCell>
-                        <Table.HeaderCell>Min Salary</Table.HeaderCell>
-                        <Table.HeaderCell>Max Salary</Table.HeaderCell>
-                        <Table.HeaderCell>Available Positions</Table.HeaderCell>
-                        <Table.HeaderCell>Deadline</Table.HeaderCell>
-                        <Table.HeaderCell>Position</Table.HeaderCell>
-                        <Table.HeaderCell>City</Table.HeaderCell>
-                    </Table.Row>
-                </Table.Header>
-
-                <Table.Body>
-                    <Table.Row>
-                        <Table.Cell>{jobAdvertisement.description}</Table.Cell>
-                        <Table.Cell>{jobAdvertisement.minSalary} TL</Table.Cell>
-                        <Table.Cell>{jobAdvertisement.maxSalary} TL</Table.Cell>
-                        <Table.Cell>{jobAdvertisement.openPositions} Position is available</Table.Cell>
-                        <Table.Cell>{jobAdvertisement.latestApplyTime}</Table.Cell>
-                        <Table.Cell>{jobAdvertisement.jobPosition?.position}</Table.Cell>
-                        <Table.Cell>{jobAdvertisement.city?.cityName}</Table.Cell>
-                    </Table.Row>
-                </Table.Body>
-            </Table>
+            <Item.Group>
+                <Item>
+                    <Item.Image size='medium' src='https://res.cloudinary.com/emreaka/image/upload/v1624304366/job_o67inx.jpg' />
+                    <Item.Content>
+                        <Item.Header>{jobAdvertisement.employer?.companyName}</Item.Header>
+                        <Item.Meta>Description</Item.Meta>
+                        <Item.Description>{jobAdvertisement.description} in {jobAdvertisement.city?.cityName}</Item.Description>
+                        <Item.Extra>Open Positions</Item.Extra>
+                        <Item.Description>{jobAdvertisement.openPositions} position left</Item.Description>
+                        <Item.Description>Deadline is in {jobAdvertisement.latestApplyTime}</Item.Description>
+                        <Item.Extra>Work Type</Item.Extra>
+                        <Item.Description>{jobAdvertisement.workPlace?.name}</Item.Description>
+                        <Item.Extra>Work Time</Item.Extra>
+                        <Item.Description>{jobAdvertisement.workTime?.name}</Item.Description>
+                        <Item.Extra>Additional Details</Item.Extra>
+                        <Item.Description>Salary is between {jobAdvertisement.maxSalary}TL and {jobAdvertisement.minSalary}TL</Item.Description>
+                    </Item.Content>
+                </Item>
+            </Item.Group>
         </div>
     )
 }

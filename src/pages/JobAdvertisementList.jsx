@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Icon, Label, Menu, Table, Button, Header } from 'semantic-ui-react'
+import { Icon, Label, Menu, Table, Button, Header, Image, Item } from 'semantic-ui-react'
 import JobAdvertisementService from '../services/jobAdvertisementService'
 
 export default function JobAdvertisement() {
@@ -17,63 +17,32 @@ export default function JobAdvertisement() {
                 <Icon name="list alternate outline" />
                 <Header.Content>Job List</Header.Content>
             </Header>
-            <Table celled color = 'grey' inverted>
-                <Table.Header>
-                    <Table.Row>
-                        <Table.HeaderCell>Campany Name</Table.HeaderCell>
-                        <Table.HeaderCell>Job Position</Table.HeaderCell>
-                        <Table.HeaderCell>Job Description</Table.HeaderCell>
-                        <Table.HeaderCell>City</Table.HeaderCell>
-                        <Table.HeaderCell>View</Table.HeaderCell>
-                    </Table.Row>
-                </Table.Header>
-
-                <Table.Body>
-                    {
-                        jobAdvertisements.map(jobAdvertisement => (
-
-                            <Table.Row key={jobAdvertisement.id}>
-                                <Table.Cell>{jobAdvertisement.employer.companyName}</Table.Cell>
-                                <Table.Cell>{jobAdvertisement.jobPosition.position}</Table.Cell>
-                                <Table.Cell>{jobAdvertisement.description}</Table.Cell>
-                                <Table.Cell>{jobAdvertisement.city.cityName}</Table.Cell>
-                                <Table.Cell>
-                                    <Link to={`/jobs/${jobAdvertisement.id}`}>
-                                        <Button animated color = 'black'>
-                                            <Button.Content visible>View</Button.Content>
-                                            <Button.Content hidden><Icon name='arrow right' />
-                                            </Button.Content>
-                                        </Button>
-                                    </Link>
-                                </Table.Cell>
-                            </Table.Row>
-
-
-
-                        ))
-                    }
-
-                </Table.Body>
-
-                {/* <Table.Footer>
-                    <Table.Row>
-                        <Table.HeaderCell colSpan='3'>
-                            <Menu floated='right' pagination>
-                                <Menu.Item as='a' icon>
-                                    <Icon name='chevron left' />
-                                </Menu.Item>
-                                <Menu.Item as='a'>1</Menu.Item>
-                                <Menu.Item as='a'>2</Menu.Item>
-                                <Menu.Item as='a'>3</Menu.Item>
-                                <Menu.Item as='a'>4</Menu.Item>
-                                <Menu.Item as='a' icon>
-                                    <Icon name='chevron right' />
-                                </Menu.Item>
-                            </Menu>
-                        </Table.HeaderCell>
-                    </Table.Row>
-                </Table.Footer> */}
-            </Table>
+            <Item.Group divided>
+                {
+                    jobAdvertisements.map(jobAdvertisement => (
+                        <Item>
+                            <Item.Image size='small' src='https://res.cloudinary.com/emreaka/image/upload/v1624304366/job_o67inx.jpg' />
+                            <Item.Content>
+                                <Item.Header>{jobAdvertisement.employer.companyName}</Item.Header>
+                                <Item.Meta>
+                                    <span className='price'>{jobAdvertisement.maxSalary} TL</span>
+                                    <span className='stay'>{jobAdvertisement.city.cityName}</span>
+                                </Item.Meta>
+                                <Item.Description>{jobAdvertisement.description}</Item.Description>
+                                <Link to = {`/jobs/${jobAdvertisement.id}`}>
+                                    <Button animated color='black'>
+                                        <Button.Content visible>Job's Details</Button.Content>
+                                        <Button.Content hidden>
+                                            <Icon name='arrow right' />
+                                        </Button.Content>
+                                    </Button>
+                                </Link>
+                                
+                            </Item.Content>
+                        </Item>
+                    ))
+                }
+            </Item.Group>
         </div>
     )
 }
