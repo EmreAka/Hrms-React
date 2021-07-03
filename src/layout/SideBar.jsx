@@ -21,7 +21,10 @@ export default function SideBar() {
                 <Menu.Item as={NavLink} to={"/employees"}
                     name='Employees'
                 />
-                
+
+                <Menu.Item as={NavLink} to={"/hrms/validateJobAds"}
+                    name='Validate Jobs'
+                />
             </Menu>
         </div>
     )

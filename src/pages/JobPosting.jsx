@@ -41,6 +41,7 @@ export default function JobPosting() {
         validationSchema: JobAdvertAddSchema,
         onSubmit: (values) => {
             values.employer = {id: 8};
+            values.active = true;
             jobAdvertisementService.addJobAdvertisement(values).then((result) => console.log(result.data.data));
             alert("Job Advertisement is added. It is going be listed after validation.");
             history.push("/jobs");

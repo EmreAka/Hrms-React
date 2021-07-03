@@ -2,7 +2,7 @@ import axios from "axios"
 
 export default class JobAdvertisement {
     getJobAdvertisements(){
-        return axios.get("http://localhost:8080/api/jobs/findAllByActiveTrue")
+        return axios.get("http://localhost:8080/api/jobs/findAllByActiveTrueAndValidateTrueOrderByCreatedTimeDesc")
     }
 
     findByIdAndActiveTrueOrderByCreatedTimeDesc(id){
@@ -10,10 +10,18 @@ export default class JobAdvertisement {
     }
 
     findAllByEmployerIdAndActiveTrue(id){
-        return axios.get("http://localhost:8080/api/jobs/findAllByEmployerIdAndActiveTrue?employerId=" + id)
+        return axios.get("http://localhost:8080/api/jobs/findAllByEmployerIdAndActiveTrueAndValidateTrue?employerId=" + id)
     }
 
     addJobAdvertisement(jobAdvertisement){
         return axios.post("http://localhost:8080/api/jobs/add", jobAdvertisement)
+    }
+
+    findAllByValidateFalseOrderByCreatedTimeDesc(){
+        return axios.get("http://localhost:8080/api/jobs/findAllByValidateFalseOrderByCreatedTimeDesc")
+    }
+
+    setValidateValue(id, value){
+        return axios.put("http://localhost:8080/api/jobs/setValidateValue?id=" + id + "&value=" + value)
     }
 }

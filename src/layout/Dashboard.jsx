@@ -10,6 +10,7 @@ import EmployeeCv from '../pages/EmployeeCv'
 import JobAdvertisementDetail from '../pages/JobAdvertisementDetail'
 import EmployerDetails from '../pages/EmployerDetails'
 import JobPosting from '../pages/JobPosting'
+import HrmsJobAdValidate from '../pages/HrmsJobAdValidate'
 
 export default function Dashboard() {
     return (
@@ -29,6 +30,7 @@ export default function Dashboard() {
                         <Route exact path = {"/employees/:id"} component={EmployeeViewCvs}/>
                         <Route exact path = {"/employees/:id/:cvId"} component={EmployeeCv}/>
                         <Route exact path = {"/jobadd"} component = {JobPosting}/>
+                        <Route exact path = {"/hrms/validateJobAds"} component = {HrmsJobAdValidate}/>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>

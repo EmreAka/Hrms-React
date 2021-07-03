@@ -19,7 +19,7 @@ export default function EmployeeViewCv() {
             <Item.Group divided>
                 {
                     employeeCvs.map(cv => (
-                        <Item>
+                        <Item key = {cv.id}>
                             <Item.Image size='small' src={cv.photo} />
                             <Item.Content>
                                 <Item.Header as='a'>{cv.employee.firstName} {cv.employee.lastName}</Item.Header>

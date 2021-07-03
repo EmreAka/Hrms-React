@@ -1,15 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import JobAdvertisement from '../services/jobAdvertisementService'
 import { Icon, Label, Menu, Table, Button, Header, Image, Item } from 'semantic-ui-react'
-import JobAdvertisementService from '../services/jobAdvertisementService'
+import { Link } from 'react-router-dom'
 
-export default function JobAdvertisement() {
+export default function HrmsJobAdValidate() {
 
-    const [jobAdvertisements, setJobAdvertisement] = useState([])
+    const [jobAdvertisements, setJobAdvertisements] = useState([])
     useEffect(() => {
-        let jobAdvertisementService = new JobAdvertisementService()
-        jobAdvertisementService.getJobAdvertisements().then(result => setJobAdvertisement(result.data.data))
+        let jobAdvertisementService = new JobAdvertisement()
+        jobAdvertisementService.findAllByValidateFalseOrderByCreatedTimeDesc().then(result => setJobAdvertisements(result.data.data))
     }, [])
+
+    function setValues(id, value) {
+        let jobAdvertisementService = new JobAdvertisement()
+        jobAdvertisementService.setValidateValue(id, value)
+    }
 
     return (
         <div>
@@ -20,7 +27,7 @@ export default function JobAdvertisement() {
             <Item.Group divided>
                 {
                     jobAdvertisements.map(jobAdvertisement => (
-                        <Item key = {jobAdvertisement.id}>
+                        <Item key={jobAdvertisement.id}>
                             <Item.Image size='small' src='https://res.cloudinary.com/emreaka/image/upload/v1624304366/job_o67inx.jpg' />
                             <Item.Content>
                                 <Item.Header>{jobAdvertisement.employer.companyName}</Item.Header>
@@ -29,7 +36,7 @@ export default function JobAdvertisement() {
                                     <span className='stay'>{jobAdvertisement.city.cityName}</span>
                                 </Item.Meta>
                                 <Item.Description>{jobAdvertisement.description}</Item.Description>
-                                <Link to = {`/jobs/${jobAdvertisement.id}`}>
+                                <Link to={`/jobs/${jobAdvertisement.id}`}>
                                     <Button animated color='black'>
                                         <Button.Content visible>Job's Details</Button.Content>
                                         <Button.Content hidden>
@@ -37,7 +44,12 @@ export default function JobAdvertisement() {
                                         </Button.Content>
                                     </Button>
                                 </Link>
-                                
+                                <Button animated color='green' onClick = {() => setValues(jobAdvertisement.id, true)}>
+                                    <Button.Content visible>Accept Job Advertisement</Button.Content>
+                                    <Button.Content hidden>
+                                        <Icon name='thumbs up' />
+                                    </Button.Content>
+                                </Button>
                             </Item.Content>
                         </Item>
                     ))

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import CvService from '../services/cvService'
-import { Button, Header, Icon, Table, Card, Image } from "semantic-ui-react";
 import EducationService from '../services/educationService';
 import JobExperienceService from '../services/jobExperienceService';
 import TechOrProgrammingLangService from '../services/techOrProgrammingLangService';
 import ForeignLanguageService from '../services/foreignLanguageService';
+import { Button } from 'semantic-ui-react';
 import CV from 'react-cv'
 
 export default function EmployeeCv() {
