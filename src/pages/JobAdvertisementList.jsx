@@ -4,6 +4,7 @@ import { Icon, Label, Menu, Table, Button, Header, Image, Item } from 'semantic-
 import JobAdvertisementService from '../services/jobAdvertisementService'
 import { useDispatch } from 'react-redux'
 import { addToFavorite } from '../store/actions/favoriteActions'
+import FavoriteService from "../services/favorite";
 
 export default function JobAdvertisement() {
 
@@ -13,12 +14,22 @@ export default function JobAdvertisement() {
         jobAdvertisementService.getJobAdvertisements().then(result => setJobAdvertisement(result.data.data))
     }, [])
 
+    const [FavoriteJobs, setFavoriteJobs] = useState([])
+    useEffect(() => {
+        let favoriteService = new FavoriteService()
+        favoriteService.getByEmployeeId(8).then(result => setFavoriteJobs(result.data.data))
+    },[])
 
     const dispatch = useDispatch()
     const handleAddToFavorite = (jobAdvertisements) => {
         dispatch(addToFavorite(jobAdvertisements))
-    }
 
+    }
+    const handleAddToFavoriteDb = (jobAdvertisements) => {
+        let favoriteService = new FavoriteService()
+        let favorite = {job: {id: jobAdvertisements.id}, employee: {id: 1}}
+        favoriteService.addFavorite(favorite)
+    }
 
     return (
         <div>
@@ -46,7 +57,7 @@ export default function JobAdvertisement() {
                                         </Button.Content>
                                     </Button>
                                 </Link>
-                                <Button animated color='black' onClick = {() => handleAddToFavorite(jobAdvertisement)}>
+                                <Button animated color='black' onClick = {() => handleAddToFavoriteDb(jobAdvertisement)}>
                                     <Button.Content visible>Add to Favorites</Button.Content>
                                     <Button.Content hidden>
                                         <Icon name='arrow right' />

@@ -34,7 +34,7 @@ export default function Navi() {
                 <Menu.Menu position='right'>
 
                     <Menu.Item>
-                        {favoriteJobs.length > 0 && <FavoriteJobs />}
+                        <FavoriteJobs/>
                         {isAuthenticanted ? <SignedIn signOut={handleSignedOut} bisey="1" /> : <SignedOut signIn={handleSignedIn} bisey="2" />}
                     </Menu.Item>
                 </Menu.Menu>
