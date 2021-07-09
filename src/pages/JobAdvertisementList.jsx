@@ -14,12 +14,6 @@ export default function JobAdvertisement() {
         jobAdvertisementService.getJobAdvertisements().then(result => setJobAdvertisement(result.data.data))
     }, [])
 
-    const [FavoriteJobs, setFavoriteJobs] = useState([])
-    useEffect(() => {
-        let favoriteService = new FavoriteService()
-        favoriteService.getByEmployeeId(8).then(result => setFavoriteJobs(result.data.data))
-    },[])
-
     const dispatch = useDispatch()
     const handleAddToFavorite = (jobAdvertisements) => {
         dispatch(addToFavorite(jobAdvertisements))
