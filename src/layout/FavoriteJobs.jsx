@@ -31,7 +31,7 @@ export default function FavoriteJobs() {
                     }
 
                     <Dropdown.Divider />
-                    <Dropdown.Item as={NavLink} to="/cart">Show your cart</Dropdown.Item>
+                    <Dropdown.Item as={NavLink} to="/favorites">Show your cart</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
         </div>

@@ -5,6 +5,7 @@ import JobAdvertisementService from '../services/jobAdvertisementService'
 import { useDispatch } from 'react-redux'
 import { addToFavorite } from '../store/actions/favoriteActions'
 import FavoriteService from "../services/favorite";
+import {toast} from "react-toastify";
 
 export default function JobAdvertisement() {
 
@@ -23,6 +24,16 @@ export default function JobAdvertisement() {
         let favoriteService = new FavoriteService()
         let favorite = {job: {id: jobAdvertisements.id}, employee: {id: 1}}
         favoriteService.addFavorite(favorite)
+        toast.success('job added to the favorite jobs', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        console.log("Added to Favorites.")
     }
 
     return (

@@ -8,4 +8,12 @@ export default class FavoriteService{
     addFavorite(Favorite){
         return axios.post("http://localhost:8080/api/favorites/add", Favorite)
     }
+
+    deleteFavorite(Favorite) {
+        return axios.delete("http://localhost:8080/api/favorites/delete", Favorite)
+    }
+
+    deleteFavoriteByFavoriteId(id) {
+        return axios.delete("http://localhost:8080/api/favorites/deleteById?id=" + id)
+    }
 }
