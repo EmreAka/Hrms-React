@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import CvService from '../services/cvService'
-import { Button, Header, Icon, Table, Item, Image } from "semantic-ui-react";
+import { Button, Icon, Item } from "semantic-ui-react";
 import { Link } from 'react-router-dom';
 
 export default function EmployeeViewCv() {

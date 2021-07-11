@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import EmployeeService from "../services/employeeService";
-import { Button, Header, Icon, Table, Image, Item } from "semantic-ui-react";
+import { Button, Header, Icon, Table } from "semantic-ui-react";
 import { Link } from 'react-router-dom';
-import CvService from '../services/cvService';
-
 export default function EmployeeList() {
 
     const [employees, setEmployees] = useState([])

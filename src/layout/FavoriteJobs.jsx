@@ -14,16 +14,12 @@ export default function FavoriteJobs() {
         favoriteService.getByEmployeeId(1).then(result => setFavoriteJobs(result.data.data))
     },[])
 
-    FavoriteJobs.map(favJob =>
-        favoriteJobs.push(favJob)
-    )
-
     return (
         <div>
             <Dropdown item text='Your Favorite Jobs'>
                 <Dropdown.Menu>
                     {
-                        favoriteJobs.map((favoriteJobs) => (
+                        FavoriteJobs.map((favoriteJobs) => (
                             <Dropdown.Item key = {favoriteJobs.job.id}>
                                 {favoriteJobs.job.employer.companyName} <Label>{favoriteJobs.job.jobPosition.position}</Label>
                             </Dropdown.Item>

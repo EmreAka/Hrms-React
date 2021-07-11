@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
-import { Button, Dropdown, Menu, Icon } from 'semantic-ui-react'
+import { Button, Menu, Icon } from 'semantic-ui-react'
 import SignedOut from './SignedOut'
 import SignedIn from './SignedIn'
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux'
 import FavoriteJobs from './FavoriteJobs';
 export default function Navi() {
-
-    const { favoriteJobs } = useSelector(state => state.favorite)
 
     const [isAuthenticanted, setisAuthenticanted] = useState(true)
     function handleSignedOut(params) {

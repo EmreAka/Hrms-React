@@ -5,7 +5,6 @@ import EducationService from '../services/educationService';
 import JobExperienceService from '../services/jobExperienceService';
 import TechOrProgrammingLangService from '../services/techOrProgrammingLangService';
 import ForeignLanguageService from '../services/foreignLanguageService';
-import { Button } from 'semantic-ui-react';
 import CV from 'react-cv'
 
 export default function EmployeeCv() {

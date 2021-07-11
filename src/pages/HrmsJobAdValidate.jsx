@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import JobAdvertisement from '../services/jobAdvertisementService'
-import { Icon, Label, Menu, Table, Button, Header, Image, Item } from 'semantic-ui-react'
+import { Icon, Button, Header, Item } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 export default function HrmsJobAdValidate() {

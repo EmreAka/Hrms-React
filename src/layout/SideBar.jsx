@@ -1,5 +1,5 @@
 import React from 'react'
-import {Menu, Icon} from 'semantic-ui-react'
+import {Menu} from 'semantic-ui-react'
 import {NavLink} from "react-router-dom";
 
 export default function SideBar() {
