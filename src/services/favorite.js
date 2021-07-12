@@ -5,6 +5,10 @@ export default class FavoriteService{
         return axios.get("http://localhost:8080/api/favorites/findAllByEmployeeId?id=" + id)
     }
 
+    findAllFavoriteJobs(){
+        return axios.get("http://localhost:8080/api/favorites/findAll")
+    }
+
     addFavorite(Favorite){
         return axios.post("http://localhost:8080/api/favorites/add", Favorite)
     }
