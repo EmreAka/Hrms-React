@@ -26,10 +26,19 @@ export default function favoriteReducer(state = initialState, action) {
             }
 
         case FETCH_FAVORITE_JOBS:
-            return {
+            let favoritesInmemory = state.favoriteJobs
+            let favoritesInDb = action.payload
+            let yeniArray = []
+            favoritesInDb.map(item => (yeniArray = favoritesInmemory.find(fav => fav.id === item.id)))
+            if (yeniArray) {
+                return {...state}
+            } else {
+                return {
                 ...state,
-                favoriteJobs:[...state.favoriteJobs, ...action.payload]
+                favoriteJobs:[...action.payload]
             }
+            }
+            
         default:
             return state
     }
