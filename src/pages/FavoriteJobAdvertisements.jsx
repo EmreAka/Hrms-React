@@ -3,8 +3,16 @@ import {Button, Header, Icon, Item} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 import FavoriteService from "../services/favorite";
 import {toast} from "react-toastify";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchFavoriteJobs } from '../store/actions/favoriteActions';
 
 export default function FavoriteJobAdvertisement() {
+
+    const dispatch = useDispatch()
+    const favjobs = useSelector(state => state.favorite.favoriteJobs)
+    useEffect(() => {
+        dispatch(fetchFavoriteJobs())
+    }, [])
 
     const [FavoriteJobs, setFavoriteJobs] = useState([])
     useEffect(() => {
@@ -35,7 +43,7 @@ export default function FavoriteJobAdvertisement() {
             </Header>
             <Item.Group divided>
                 {
-                    FavoriteJobs.map(favoritejob => (
+                    favjobs.map(favoritejob => (
                         <Item key={favoritejob.id}>
                             <Item.Image size='small'
                                         src='https://res.cloudinary.com/emreaka/image/upload/v1624304366/job_o67inx.jpg'/>
@@ -64,6 +72,10 @@ export default function FavoriteJobAdvertisement() {
                     ))
                 }
             </Item.Group>
+
+            {/* {JSON.stringify(favjobs)} */}
+
+            {/* {favjobs.map(item => {return <h3>{item.id}</h3>})} */}
         </div>
     )
 }
