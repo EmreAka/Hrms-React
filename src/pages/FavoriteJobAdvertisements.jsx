@@ -14,12 +14,6 @@ export default function FavoriteJobAdvertisement() {
         dispatch(fetchFavoriteJobs())
     }, [])
 
-    const [FavoriteJobs, setFavoriteJobs] = useState([])
-    useEffect(() => {
-        let favoriteService = new FavoriteService()
-        favoriteService.getByEmployeeId(1).then(result => setFavoriteJobs(result.data.data))
-    },[])
-
     const deleteFavorite = (id) => {
         let favoriteService = new FavoriteService()
         favoriteService.deleteFavoriteByFavoriteId(id)
