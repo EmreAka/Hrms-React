@@ -8,15 +8,20 @@ const initialState = {
 export default function favoriteReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_TO_FAVORITE:
-            let job = state.favoriteJobs.find(j => j.job.id === action.payload.id)
-            if (job) {
+            // let favorite = state.favoriteJobs.find(favoriteJob => favoriteJob.job.id === action.payload.job?.id)
+            let favoritesInmemory1 = state.favoriteJobs
+            let favoritesInDb1 = action.payload
+            let newArray = []
+            favoritesInDb1.map(item => (newArray = favoritesInmemory1.find(favorite => favorite.job.id === item.job.id)))
+            if (newArray) {
                 return {
                     ...state
                 }
             } else {
                 return {
                     ...state,
-                    favoriteJobs:[...state.favoriteJobs, {job: action.payload}]
+                    // favoriteJobs:[...state.favoriteJobs, {job: action.payload}]
+                    favoriteJobs:[...action.payload]
                 }
             }
         case REMOVE_FROM_FAVORITE:
@@ -39,7 +44,7 @@ export default function favoriteReducer(state = initialState, action) {
                 favoriteJobs:[...action.payload]
             }
             }
-            
+
         default:
             return state
     }

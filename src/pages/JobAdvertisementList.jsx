@@ -4,7 +4,6 @@ import { Icon, Button, Header, Item } from 'semantic-ui-react'
 import JobAdvertisementService from '../services/jobAdvertisementService'
 import { useDispatch } from 'react-redux'
 import { addToFavorite } from '../store/actions/favoriteActions'
-import FavoriteService from "../services/favorite";
 import {toast} from "react-toastify";
 
 export default function JobAdvertisement() {
@@ -17,10 +16,8 @@ export default function JobAdvertisement() {
 
     const dispatch = useDispatch()
     const handleAddToFavoriteDb = (jobAdvertisements) => {
-        let favoriteService = new FavoriteService()
-        let favorite = {job: {id: jobAdvertisements.id}, employee: {id: 1}}
-        dispatch(addToFavorite(jobAdvertisements))
-        favoriteService.addFavorite(favorite)
+        const favorite = {job: {id: jobAdvertisements.id}, employee: {id: 1}}
+        dispatch(addToFavorite(favorite))
         toast.success('job added to the favorite jobs', {
             position: "top-center",
             autoClose: 5000,
@@ -29,8 +26,7 @@ export default function JobAdvertisement() {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-        });
-        console.log("Added to Favorites.")
+        })
     }
 
     return (

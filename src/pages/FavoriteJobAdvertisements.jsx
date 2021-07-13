@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {Button, Header, Icon, Item} from "semantic-ui-react";
 import {Link} from "react-router-dom";
-import FavoriteService from "../services/favorite";
 import {toast} from "react-toastify";
 import { useDispatch, useSelector } from 'react-redux';
 import {fetchFavoriteJobs, removeFromFavorite} from '../store/actions/favoriteActions';
@@ -26,20 +25,6 @@ export default function FavoriteJobAdvertisement() {
             progress: undefined,
         })
     }
-
-/*    const deleteFavorite = (id) => {
-        let favoriteService = new FavoriteService()
-        favoriteService.deleteFavoriteByFavoriteId(id)
-        toast.success('job removed to the favorite jobs', {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        })
-    }*/
 
     return (
         <div>
