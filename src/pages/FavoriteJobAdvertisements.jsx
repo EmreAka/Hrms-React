@@ -3,16 +3,31 @@ import {Button, Header, Icon, Item} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 import FavoriteService from "../services/favorite";
 import {toast} from "react-toastify";
+import { useDispatch, useSelector } from 'react-redux';
+import {fetchFavoriteJobs, removeFromFavorite} from '../store/actions/favoriteActions';
 
 export default function FavoriteJobAdvertisement() {
 
-    const [FavoriteJobs, setFavoriteJobs] = useState([])
+    const dispatch = useDispatch()
+    const favjobs = useSelector(state => state.favorite.favoriteJobs)
     useEffect(() => {
-        let favoriteService = new FavoriteService()
-        favoriteService.getByEmployeeId(1).then(result => setFavoriteJobs(result.data.data))
-    },[])
+        dispatch(fetchFavoriteJobs())
+    }, [])
 
-    const deleteFavorite = (id) => {
+    const handleRemoveFromFavoriteDb = (favorite) => {
+        dispatch(removeFromFavorite(favorite))
+        toast.success('job removed to the favorite jobs', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
+    }
+
+/*    const deleteFavorite = (id) => {
         let favoriteService = new FavoriteService()
         favoriteService.deleteFavoriteByFavoriteId(id)
         toast.success('job removed to the favorite jobs', {
@@ -24,8 +39,7 @@ export default function FavoriteJobAdvertisement() {
             draggable: true,
             progress: undefined,
         })
-        console.log(id)
-    }
+    }*/
 
     return (
         <div>
@@ -35,7 +49,7 @@ export default function FavoriteJobAdvertisement() {
             </Header>
             <Item.Group divided>
                 {
-                    FavoriteJobs.map(favoritejob => (
+                    favjobs.map(favoritejob => (
                         <Item key={favoritejob.id}>
                             <Item.Image size='small'
                                         src='https://res.cloudinary.com/emreaka/image/upload/v1624304366/job_o67inx.jpg'/>
@@ -55,7 +69,7 @@ export default function FavoriteJobAdvertisement() {
                                     </Button>
 
                                 </Link>
-                                <Button animated = 'fade' color = 'red' onClick={() => deleteFavorite(favoritejob.id)}>
+                                <Button animated = 'fade' color = 'red' onClick={() => handleRemoveFromFavoriteDb(favoritejob)}>
                                     <Button.Content visible>Remove From Favorites</Button.Content>
                                     <Button.Content hidden><Icon name = 'trash'/></Button.Content>
                                 </Button>
@@ -64,6 +78,10 @@ export default function FavoriteJobAdvertisement() {
                     ))
                 }
             </Item.Group>
+
+            {/* {JSON.stringify(favjobs)} */}
+
+            {/* {favjobs.map(item => {return <h3>{item.id}</h3>})} */}
         </div>
     )
 }

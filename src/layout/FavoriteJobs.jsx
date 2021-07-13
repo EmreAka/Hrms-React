@@ -1,12 +1,16 @@
 import React, {useEffect, useState} from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Dropdown, Label } from 'semantic-ui-react'
 import FavoriteService from "../services/favorite";
+import { fetchFavoriteJobs } from '../store/actions/favoriteActions';
 
 export default function FavoriteJobs() {
-
-    const { favoriteJobs } = useSelector(state => state.favorite)
+    const dispatch = useDispatch()
+    const favoriteJobs = useSelector(state => state.favorite.favoriteJobs)
+    useEffect(() => {
+        dispatch(fetchFavoriteJobs())
+    }, [])
 
     const [FavoriteJobs, setFavoriteJobs] = useState([])
     useEffect(() => {
@@ -19,8 +23,8 @@ export default function FavoriteJobs() {
             <Dropdown item text='Your Favorite Jobs'>
                 <Dropdown.Menu>
                     {
-                        FavoriteJobs.map((favoriteJobs) => (
-                            <Dropdown.Item key = {favoriteJobs.job.id}>
+                        favoriteJobs.map((favoriteJobs) => (
+                            <Dropdown.Item key = {favoriteJobs.id}>
                                 {favoriteJobs.job.employer.companyName} <Label>{favoriteJobs.job.jobPosition.position}</Label>
                             </Dropdown.Item>
                         ))
