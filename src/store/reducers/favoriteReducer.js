@@ -22,7 +22,8 @@ export default function favoriteReducer(state = initialState, action) {
         case REMOVE_FROM_FAVORITE:
             return{
                 ...state,
-                favoriteJobs:state.favoriteJobs.filter(j => j.job.id !== action.payload.id)
+                // favoriteJobs:state.favoriteJobs.filter(j => j.id !== action.payload.id)
+                favoriteJobs:[...action.payload]
             }
 
         case FETCH_FAVORITE_JOBS:

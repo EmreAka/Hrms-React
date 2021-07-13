@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import FavoriteService from "../services/favorite";
 import {toast} from "react-toastify";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchFavoriteJobs } from '../store/actions/favoriteActions';
+import {fetchFavoriteJobs, removeFromFavorite} from '../store/actions/favoriteActions';
 
 export default function FavoriteJobAdvertisement() {
 
@@ -14,7 +14,20 @@ export default function FavoriteJobAdvertisement() {
         dispatch(fetchFavoriteJobs())
     }, [])
 
-    const deleteFavorite = (id) => {
+    const handleRemoveFromFavoriteDb = (favorite) => {
+        dispatch(removeFromFavorite(favorite))
+        toast.success('job removed to the favorite jobs', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
+    }
+
+/*    const deleteFavorite = (id) => {
         let favoriteService = new FavoriteService()
         favoriteService.deleteFavoriteByFavoriteId(id)
         toast.success('job removed to the favorite jobs', {
@@ -26,8 +39,7 @@ export default function FavoriteJobAdvertisement() {
             draggable: true,
             progress: undefined,
         })
-        console.log(id)
-    }
+    }*/
 
     return (
         <div>
@@ -57,7 +69,7 @@ export default function FavoriteJobAdvertisement() {
                                     </Button>
 
                                 </Link>
-                                <Button animated = 'fade' color = 'red' onClick={() => deleteFavorite(favoritejob.id)}>
+                                <Button animated = 'fade' color = 'red' onClick={() => handleRemoveFromFavoriteDb(favoritejob)}>
                                     <Button.Content visible>Remove From Favorites</Button.Content>
                                     <Button.Content hidden><Icon name = 'trash'/></Button.Content>
                                 </Button>
