@@ -6,22 +6,19 @@ export const FETCH_FAVORITE_JOBS = "FETCH_FAVORITE_JOBS"
 
 let favoriteJobsService = new FavoriteService()
 
-export function addToFavorite(job) {
-    return {
-        type: ADD_TO_FAVORITE,
-        payload: job
+export function addToFavorite(favorite) {
+    return async (dispatch, getState) => {
+        await favoriteJobsService.addFavorite(favorite)
+        const response = await favoriteJobsService.findAllFavoriteJobs()
+        dispatch({
+            type: ADD_TO_FAVORITE,
+            payload: response.data.data
+        })
     }
 }
 
-// export function removeFromFavorite(job) {
-//     return {
-//         type: REMOVE_FROM_FAVORITE,
-//         payload: job
-//     }
-// }
-
 export function removeFromFavorite(favorite) {
-    return async (dispatch, getstate) => {
+    return async (dispatch, getState) => {
         await favoriteJobsService.deleteFavoriteByFavoriteId(favorite.id)
         const response = await favoriteJobsService.findAllFavoriteJobs()
         dispatch({
