@@ -15,15 +15,6 @@ export default function FavoriteJobAdvertisement() {
 
     const handleRemoveFromFavoriteDb = (favorite) => {
         dispatch(removeFromFavorite(favorite))
-        toast.success('job removed to the favorite jobs', {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        })
     }
 
     return (
@@ -46,7 +37,7 @@ export default function FavoriteJobAdvertisement() {
                                 </Item.Meta>
                                 <Item.Description>{favoritejob.job.description}</Item.Description>
                                 <Link to={`/jobs/${favoritejob.job.id}`}>
-                                    <Button animated color='black'>
+                                    <Button animated color='grey'>
                                         <Button.Content visible>Job's Details</Button.Content>
                                         <Button.Content hidden>
                                             <Icon name='arrow right'/>
