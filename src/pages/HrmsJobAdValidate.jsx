@@ -44,7 +44,7 @@ export default function HrmsJobAdValidate() {
                                         </Button.Content>
                                     </Button>
                                 </Link>
-                                <Button animated color='green' onClick = {() => setValues(jobAdvertisement.id, true)}>
+                                <Button animated='fade' color='green' onClick = {() => setValues(jobAdvertisement.id, true)}>
                                     <Button.Content visible>Accept Job Advertisement</Button.Content>
                                     <Button.Content hidden>
                                         <Icon name='thumbs up' />
