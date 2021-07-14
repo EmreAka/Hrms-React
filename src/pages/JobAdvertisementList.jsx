@@ -46,7 +46,7 @@ export default function JobAdvertisement() {
                                         </Button.Content>
                                     </Button>
                                 </Link>
-                                <Button animated color='yellow' onClick = {() => handleAddToFavoriteDb(jobAdvertisement)}>
+                                <Button animated='fade' color='yellow' onClick = {() => handleAddToFavoriteDb(jobAdvertisement)}>
                                     <Button.Content visible>Add to Favorites</Button.Content>
                                     <Button.Content hidden>
                                         <Icon name='star' />
