@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Icon, Button, Header, Item } from 'semantic-ui-react'
+import {Icon, Button, Header, Item, Pagination} from 'semantic-ui-react'
 import JobAdvertisementService from '../services/jobAdvertisementService'
 import { useDispatch } from 'react-redux'
 import { addToFavorite } from '../store/actions/favoriteActions'
-import {toast} from "react-toastify";
 
 export default function JobAdvertisement() {
+    let jobAdvertisementService = new JobAdvertisementService()
+    let pageNo = 0;
+    let pageSize = 5;
+    const handlePageNo = (pageNumber) => {
+        pageNo = pageNumber - 1
+        console.log(pageNo)
+        jobAdvertisementService.getAllByPageNoAndPageSize(pageNo, pageSize).then(result => setJobAdvertisement(result.data.data))
+    }
 
     const [jobAdvertisements, setJobAdvertisement] = useState([])
     useEffect(() => {
-        let jobAdvertisementService = new JobAdvertisementService()
-        jobAdvertisementService.getJobAdvertisements().then(result => setJobAdvertisement(result.data.data))
+        // jobAdvertisementService.getJobAdvertisements().then(result => setJobAdvertisement(result.data.data))
+        jobAdvertisementService.getAllByPageNoAndPageSize(pageNo, pageSize).then(result => setJobAdvertisement(result.data.data))
     }, [])
 
     const dispatch = useDispatch()
@@ -57,6 +64,7 @@ export default function JobAdvertisement() {
                     ))
                 }
             </Item.Group>
+            <Pagination defaultActivePage={1} totalPages={10} onPageChange={(event,data) => handlePageNo(data.activePage)} />
         </div>
     )
 }
