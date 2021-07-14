@@ -24,4 +24,8 @@ export default class JobAdvertisement {
     setValidateValue(id, value){
         return axios.put("http://localhost:8080/api/jobs/setValidateValue?id=" + id + "&value=" + value)
     }
+
+    getAllByPageNoAndPageSize(pageNo, pageSize){
+        return axios.get("http://localhost:8080/api/jobs/getAllByPageNoAndPageSize?pageNo=" + pageNo + "&pageSize=" + pageSize)
+    }
 }
