@@ -15,15 +15,6 @@ export default function FavoriteJobAdvertisement() {
 
     const handleRemoveFromFavoriteDb = (favorite) => {
         dispatch(removeFromFavorite(favorite))
-        toast.success('job removed to the favorite jobs', {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        })
     }
 
     return (
