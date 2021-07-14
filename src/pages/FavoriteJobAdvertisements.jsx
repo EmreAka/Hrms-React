@@ -46,7 +46,7 @@ export default function FavoriteJobAdvertisement() {
                                 </Item.Meta>
                                 <Item.Description>{favoritejob.job.description}</Item.Description>
                                 <Link to={`/jobs/${favoritejob.job.id}`}>
-                                    <Button animated color='black'>
+                                    <Button animated color='grey'>
                                         <Button.Content visible>Job's Details</Button.Content>
                                         <Button.Content hidden>
                                             <Icon name='arrow right'/>

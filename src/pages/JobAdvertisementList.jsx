@@ -48,17 +48,17 @@ export default function JobAdvertisement() {
                                 </Item.Meta>
                                 <Item.Description>{jobAdvertisement.description}</Item.Description>
                                 <Link to={`/jobs/${jobAdvertisement.id}`}>
-                                    <Button animated color='black'>
+                                    <Button animated color='grey'>
                                         <Button.Content visible>Job's Details</Button.Content>
                                         <Button.Content hidden>
                                             <Icon name='arrow right' />
                                         </Button.Content>
                                     </Button>
                                 </Link>
-                                <Button animated color='black' onClick = {() => handleAddToFavoriteDb(jobAdvertisement)}>
+                                <Button animated color='yellow' onClick = {() => handleAddToFavoriteDb(jobAdvertisement)}>
                                     <Button.Content visible>Add to Favorites</Button.Content>
                                     <Button.Content hidden>
-                                        <Icon name='arrow right' />
+                                        <Icon name='star' />
                                     </Button.Content>
                                 </Button>
                             </Item.Content>
