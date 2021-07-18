@@ -14,7 +14,7 @@ export function addToFavorite(favorite) {
         console.log(responseAddFavorite.data.success)
         if (responseAddFavorite.data.success){
             toast.success(`${responseAddFavorite.data.message}`, {
-                position: "top-center",
+                position: "bottom-right",
                 autoClose: 5000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -24,7 +24,7 @@ export function addToFavorite(favorite) {
             })
         } else {
             toast.error(`${responseAddFavorite.data.message}`, {
-                position: "top-center",
+                position: "bottom-right",
                 autoClose: 5000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -48,7 +48,7 @@ export function removeFromFavorite(favorite) {
         console.log(responseFavoriteDelete.data.success)
         if (responseFavoriteDelete.data.success){
             toast.success(`${responseFavoriteDelete.data.message}`, {
-                position: "top-center",
+                position: "bottom-right",
                 autoClose: 5000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -58,7 +58,7 @@ export function removeFromFavorite(favorite) {
             })
         } else {
             toast.error(`${responseFavoriteDelete.data.message}`, {
-                position: "top-center",
+                position: "bottom-right",
                 autoClose: 5000,
                 hideProgressBar: false,
                 closeOnClick: true,

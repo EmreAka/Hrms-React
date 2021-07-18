@@ -6,6 +6,8 @@ import JobExperienceService from '../services/jobExperienceService';
 import TechOrProgrammingLangService from '../services/techOrProgrammingLangService';
 import ForeignLanguageService from '../services/foreignLanguageService';
 import CV from 'react-cv'
+import {Button} from "semantic-ui-react";
+import {Link} from "react-router-dom";
 
 export default function EmployeeCv() {
 
@@ -67,7 +69,9 @@ export default function EmployeeCv() {
             authorityMeta: `Level: ${lang.languageLevel}`
         }
     ))
-    
+    const languageTitle = <Link to = {"/home"}>Languages</Link>
+    const educationTitle = <Link to = {"/home"}>Educations</Link>
+
     const techsandprogs = techOrProgrammingLangs.map(techs => (
         `${techs.technologyOrProgrammingLanguage}`
     ))
@@ -93,7 +97,7 @@ export default function EmployeeCv() {
                 },
                 {
                     type: 'common-list',
-                    title: 'Education',
+                    title: educationTitle,
                     icon: 'graduation',
                     items: edus
                 },
@@ -105,7 +109,7 @@ export default function EmployeeCv() {
                   },
                   {
                     type: 'common-list',
-                    title: 'Languages',
+                    title: languageTitle,
                     icon: 'language',
                     items: langs
                   },
