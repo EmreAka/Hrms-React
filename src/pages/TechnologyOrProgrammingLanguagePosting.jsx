@@ -5,10 +5,13 @@ import TechOrProgrammingLangService from "../services/techOrProgrammingLangServi
 import {useFormik} from "formik";
 import {toast} from "react-toastify";
 import {Button, Card, Form, Input} from "semantic-ui-react";
+import {useHistory} from "react-router-dom";
 
 export default function TechnologyOrProgrammingLanguagePosting() {
     let { cvId } = useParams()
     let technologyOrProgrammingLanguageService = new TechOrProgrammingLangService()
+
+    const history = useHistory()
 
     const TechnologySchema = Yup.object().shape({
         technologyOrProgrammingLanguage: Yup.string().required("You have to fill this area")
@@ -43,6 +46,7 @@ export default function TechnologyOrProgrammingLanguagePosting() {
                     progress: undefined,
                 })
             }
+            setTimeout(() => { history.push(`/employees/1/${cvId}`); }, 2000)
         }
     })
 

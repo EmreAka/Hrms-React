@@ -5,10 +5,13 @@ import { useParams } from 'react-router'
 import {useFormik} from "formik";
 import {toast} from "react-toastify";
 import {Button, Card, Form, Input} from "semantic-ui-react";
+import {useHistory} from "react-router-dom";
 
 export default function LanguagePosting() {
     let { cvId } = useParams()
     let languageService = new ForeignLanguageService()
+
+    const history = useHistory()
 
     const LanguageSchema = Yup.object().shape({
         languageName: Yup.string().required("You have to fill this area"),
@@ -45,6 +48,7 @@ export default function LanguagePosting() {
                     progress: undefined,
                 })
             }
+            setTimeout(() => { history.push(`/employees/1/${cvId}`); }, 2000)
         }
     })
 

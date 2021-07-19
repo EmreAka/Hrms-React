@@ -5,9 +5,12 @@ import {useFormik} from "formik";
 import { useParams } from 'react-router'
 import {toast} from "react-toastify";
 import {Button, Card, Form, Grid, Input} from "semantic-ui-react";
+import {useHistory} from "react-router-dom";
 
 export default function EducationPosting() {
     let { cvId } = useParams()
+
+    const history = useHistory()
 
     let educationService = new EducationService()
     const EducationSchema = Yup.object().shape({
@@ -48,6 +51,7 @@ export default function EducationPosting() {
                     progress: undefined,
                 })
             }
+            setTimeout(() => { history.push(`/employees/1/${cvId}`); }, 2000)
         }
     })
 
