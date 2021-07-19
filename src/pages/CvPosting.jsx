@@ -4,9 +4,12 @@ import * as Yup from 'yup'
 import {useFormik} from "formik";
 import {toast} from "react-toastify";
 import {Button, Card, Form, Input, TextArea} from "semantic-ui-react";
+import {useHistory} from "react-router-dom";
 
 export default function CvPosting() {
     let cvService = new CvService()
+
+    const history = useHistory()
 
     const cvSchema = Yup.object().shape({
 
@@ -44,6 +47,7 @@ export default function CvPosting() {
                     progress: undefined,
                 })
             }
+            setTimeout(() => { history.push(`/employees/${values.employee.id}`); }, 2000)
         }
     })
     return (
