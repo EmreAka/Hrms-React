@@ -14,7 +14,7 @@ export default function SideBar() {
                            name='Job Add'
                 />
 
-                <Menu.Item as={NavLink} to={"cvadd"}
+                <Menu.Item as={NavLink} to="/cvadd"
                            name='Add Cv'
                 />
 
