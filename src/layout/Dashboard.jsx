@@ -17,6 +17,7 @@ import CvPosting from "../pages/CvPosting";
 import EducationPosting from "../pages/EducationPosting";
 import ExperiencePosting from "../pages/ExperiencePosting";
 import LanguagePosting from "../pages/LanguagePosting";
+import TechnologyOrProgrammingLanguagePosting from "../pages/TechnologyOrProgrammingLanguagePosting";
 
 export default function Dashboard() {
     return (
@@ -42,6 +43,7 @@ export default function Dashboard() {
                         <Route exact path = {"/educationadd/:cvId"} component = {EducationPosting}/>
                         <Route exact path = {"/experienceadd/:cvId"} component = {ExperiencePosting}/>
                         <Route exact path = {"/languageadd/:cvId"} component = {LanguagePosting}/>
+                        <Route exact path = {"/techorprogramminglangadd/:cvId"} component = {TechnologyOrProgrammingLanguagePosting}/>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>

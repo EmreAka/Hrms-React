@@ -6,6 +6,6 @@ export default class TechOrProgrammingLangService{
     }
 
     addTechOrProgrammingLangService(techOrProgrammingLangService){
-        return axios.post("localhost:8080/api/TechnologyAndProgrammingLanguages/add", techOrProgrammingLangService)
+        return axios.post("http://localhost:8080/api/TechnologyAndProgrammingLanguages/add", techOrProgrammingLangService)
     }
 }
