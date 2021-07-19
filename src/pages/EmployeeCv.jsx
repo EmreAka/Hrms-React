@@ -68,9 +68,10 @@ export default function EmployeeCv() {
             authorityMeta: `Level: ${lang.languageLevel}`
         }
     ))
-    const languageTitle = <Link to = {"/home"}>Languages</Link>
+
     const educationTitle = <Link to = {`/educationadd/${cv.id}`}>Educations</Link>
     const experienceTitle = <Link to = {`/experienceadd/${cv.id}`}>Experiences</Link>
+    const languageTitle = <Link to = {`/languageadd/${cv.id}`}>Languages</Link>
 
     const techsandprogs = techOrProgrammingLangs.map(techs => (
         `${techs.technologyOrProgrammingLanguage}`
