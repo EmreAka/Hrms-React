@@ -13,7 +13,11 @@ export default function SideBar() {
                 <Menu.Item as={NavLink} to="/jobadd"
                            name='Job Add'
                 />
-                
+
+                <Menu.Item as={NavLink} to={"cvadd"}
+                           name='Add Cv'
+                />
+
                 <Menu.Item as={NavLink} to="/employers"
                            name='Employers'
                 />
