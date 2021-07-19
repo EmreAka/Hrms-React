@@ -70,6 +70,7 @@ export default function EmployeeCv() {
     ))
     const languageTitle = <Link to = {"/home"}>Languages</Link>
     const educationTitle = <Link to = {`/educationadd/${cv.id}`}>Educations</Link>
+    const experienceTitle = <Link to = {`/experienceadd/${cv.id}`}>Experiences</Link>
 
     const techsandprogs = techOrProgrammingLangs.map(techs => (
         `${techs.technologyOrProgrammingLanguage}`
@@ -102,7 +103,7 @@ export default function EmployeeCv() {
                 },
                 {
                     type: 'experiences-list',
-                    title: 'Experiences',
+                    title: experienceTitle,
                     icon: 'archive',
                     items: exps
                   },

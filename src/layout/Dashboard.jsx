@@ -15,6 +15,7 @@ import FavoriteJobAdvertisement from "../pages/FavoriteJobAdvertisements";
 import {ToastContainer} from "react-toastify";
 import CvPosting from "../pages/CvPosting";
 import EducationPosting from "../pages/EducationPosting";
+import ExperiencePosting from "../pages/ExperiencePosting";
 
 export default function Dashboard() {
     return (
@@ -38,6 +39,7 @@ export default function Dashboard() {
                         <Route exact path = {"/favorites"} component = {FavoriteJobAdvertisement}/>
                         <Route exact path = {"/cvadd"} component = {CvPosting}/>
                         <Route exact path = {"/educationadd/:cvId"} component = {EducationPosting}/>
+                        <Route exact path = {"/experienceadd/:cvId"} component = {ExperiencePosting}/>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
