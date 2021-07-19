@@ -72,6 +72,7 @@ export default function EmployeeCv() {
     const educationTitle = <Link to = {`/educationadd/${cv.id}`}>Educations</Link>
     const experienceTitle = <Link to = {`/experienceadd/${cv.id}`}>Experiences</Link>
     const languageTitle = <Link to = {`/languageadd/${cv.id}`}>Languages</Link>
+    const skillTitle = <Link to = {`/techorprogramminglangadd/${cv.id}`}>Technologies or Programming Languages</Link>
 
     const techsandprogs = techOrProgrammingLangs.map(techs => (
         `${techs.technologyOrProgrammingLanguage}`
@@ -116,7 +117,7 @@ export default function EmployeeCv() {
                   },
                   {
                     type: 'tag-list',
-                    title: 'Skills Proficiency',
+                    title: skillTitle,
                     icon: 'rocket',
                     items: techsandprogs
                   },
