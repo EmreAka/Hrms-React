@@ -16,6 +16,7 @@ import {ToastContainer} from "react-toastify";
 import CvPosting from "../pages/CvPosting";
 import EducationPosting from "../pages/EducationPosting";
 import ExperiencePosting from "../pages/ExperiencePosting";
+import LanguagePosting from "../pages/LanguagePosting";
 
 export default function Dashboard() {
     return (
@@ -40,6 +41,7 @@ export default function Dashboard() {
                         <Route exact path = {"/cvadd"} component = {CvPosting}/>
                         <Route exact path = {"/educationadd/:cvId"} component = {EducationPosting}/>
                         <Route exact path = {"/experienceadd/:cvId"} component = {ExperiencePosting}/>
+                        <Route exact path = {"/languageadd/:cvId"} component = {LanguagePosting}/>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
