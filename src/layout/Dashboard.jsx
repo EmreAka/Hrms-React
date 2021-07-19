@@ -14,6 +14,7 @@ import HrmsJobAdValidate from '../pages/HrmsJobAdValidate'
 import FavoriteJobAdvertisement from "../pages/FavoriteJobAdvertisements";
 import {ToastContainer} from "react-toastify";
 import CvPosting from "../pages/CvPosting";
+import EducationPosting from "../pages/EducationPosting";
 
 export default function Dashboard() {
     return (
@@ -35,7 +36,8 @@ export default function Dashboard() {
                         <Route exact path = {"/jobadd"} component = {JobPosting}/>
                         <Route exact path = {"/hrms/validateJobAds"} component = {HrmsJobAdValidate}/>
                         <Route exact path = {"/favorites"} component = {FavoriteJobAdvertisement}/>
-                        <Route exact path= {"/cvadd"} component = {CvPosting}/>
+                        <Route exact path = {"/cvadd"} component = {CvPosting}/>
+                        <Route exact path = {"/educationadd/:cvId"} component = {EducationPosting}/>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>

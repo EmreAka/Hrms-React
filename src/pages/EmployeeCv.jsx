@@ -6,7 +6,6 @@ import JobExperienceService from '../services/jobExperienceService';
 import TechOrProgrammingLangService from '../services/techOrProgrammingLangService';
 import ForeignLanguageService from '../services/foreignLanguageService';
 import CV from 'react-cv'
-import {Button} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 
 export default function EmployeeCv() {
@@ -70,7 +69,7 @@ export default function EmployeeCv() {
         }
     ))
     const languageTitle = <Link to = {"/home"}>Languages</Link>
-    const educationTitle = <Link to = {"/home"}>Educations</Link>
+    const educationTitle = <Link to = {`/educationadd/${cv.id}`}>Educations</Link>
 
     const techsandprogs = techOrProgrammingLangs.map(techs => (
         `${techs.technologyOrProgrammingLanguage}`
