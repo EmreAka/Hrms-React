@@ -79,9 +79,9 @@ export default function TechnologyOrProgrammingLanguagePosting() {
                             stlye = {{ marginLeft: '20px'}}
                         />
                     </Form>
-                    <pre>
-                            {JSON.stringify(formik.values, null, 2)}
-                        </pre>
+                    {/*<pre>
+                        {JSON.stringify(formik.values, null, 2)}
+                    </pre>*/}
                 </Card.Content>
             </Card>
         </div>

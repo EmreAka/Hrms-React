@@ -7,6 +7,7 @@ import TechOrProgrammingLangService from '../services/techOrProgrammingLangServi
 import ForeignLanguageService from '../services/foreignLanguageService';
 import CV from 'react-cv'
 import {Link} from "react-router-dom";
+import {Button, Icon} from "semantic-ui-react";
 
 export default function EmployeeCv() {
 
@@ -69,10 +70,26 @@ export default function EmployeeCv() {
         }
     ))
 
-    const educationTitle = <Link to = {`/educationadd/${cv.id}`}>Educations</Link>
-    const experienceTitle = <Link to = {`/experienceadd/${cv.id}`}>Experiences</Link>
-    const languageTitle = <Link to = {`/languageadd/${cv.id}`}>Languages</Link>
-    const skillTitle = <Link to = {`/techorprogramminglangadd/${cv.id}`}>Technologies or Programming Languages</Link>
+    const educationTitle = <label>Educations <Link to = {`/educationadd/${cv.id}`}><Button animated = 'fade' color = 'blue' floated = 'right'>
+        <Button.Content visible>Add New Education</Button.Content>
+        <Button.Content hidden><Icon name = 'add'/></Button.Content>
+    </Button></Link></label>
+
+    const experienceTitle = <label>Experiences <Link to = {`/experienceadd/${cv.id}`}><Button floated = 'right' color = 'blue' animated = 'fade'>
+        <Button.Content visible>Add New Experience</Button.Content>
+        <Button.Content hidden><Icon name = 'add'/></Button.Content>
+    </Button></Link></label>
+
+    const languageTitle = <label>Languages <Link to = {`/languageadd/${cv.id}`}><Button animated = 'fade' floated = 'right' color = 'blue'>
+        <Button.Content visible>Add New Language</Button.Content>
+        <Button.Content hidden><Icon name = 'add'/></Button.Content>
+    </Button></Link></label>
+
+    const skillTitle = <label>Technologies or Programming Languages <Link to = {`/techorprogramminglangadd/${cv.id}`}><Button color = 'blue' animated = 'fade' floated = 'fade'>
+        <Button.Content visible>Add New Technologie</Button.Content>
+        <Button.Content hidden><Icon name = 'add'/></Button.Content>
+    </Button></Link></label>
+
 
     const techsandprogs = techOrProgrammingLangs.map(techs => (
         `${techs.technologyOrProgrammingLanguage}`
