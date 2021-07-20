@@ -6,9 +6,12 @@ import {useFormik} from "formik";
 import {toast} from "react-toastify";
 import JobPositionService from "../services/jobPositionService";
 import {Button, Card, Dropdown, Form, Grid, Input} from "semantic-ui-react";
+import {useHistory} from "react-router-dom";
 export default function ExperiencePosting() {
     let { cvId } = useParams()
     let experienceService = new JobExperienceService()
+
+    const history = useHistory()
 
     const ExperienceSchema = Yup.object().shape({
         workplaceName: Yup.string().required("You have to fill this area"),
@@ -49,6 +52,7 @@ export default function ExperiencePosting() {
                     progress: undefined,
                 })
             }
+            setTimeout(() => { history.push(`/employees/1/${cvId}`); }, 2000)
         }
     })
 
