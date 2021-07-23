@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 export default function SideBar() {
     return (
         <div>
-            <Menu pointing vertical color = 'grey' inverted>
+            <Menu style = {{marginTop: "4.9em"}} fixed = 'left' pointing vertical color = 'black'>
                 <Menu.Item as={NavLink} to="/jobs"
                            name='Job Advertisements'
                 />
