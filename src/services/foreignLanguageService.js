@@ -8,4 +8,8 @@ export default class ForeignLanguageService{
     addForeignLanguage(foreignLanguage){
         return axios.post("http://localhost:8080/api/foreignLanguages/add", foreignLanguage)
     }
+
+    deleteForeignLanguageById(id) {
+        return axios.delete("http://localhost:8080/api/foreignLanguages/deleteById?id=" + id)
+    }
 }

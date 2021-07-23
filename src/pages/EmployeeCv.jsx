@@ -7,7 +7,7 @@ import TechOrProgrammingLangService from '../services/techOrProgrammingLangServi
 import ForeignLanguageService from '../services/foreignLanguageService';
 import CV from 'react-cv'
 import {Link} from "react-router-dom";
-import {Button, Icon} from "semantic-ui-react";
+import {Button, Icon, Image} from "semantic-ui-react";
 
 export default function EmployeeCv() {
 
@@ -63,30 +63,48 @@ export default function EmployeeCv() {
           }
     ))
 
+    const deleteForeignLanguage = async (id) => {
+        let foreignLanguageService = new ForeignLanguageService()
+        const respond = await foreignLanguageService.deleteForeignLanguageById(id)
+        if (respond.data.success) {
+            console.log("Başarılı")
+        }
+    }
     const langs = foreignLanguages.map(lang => (
         {
-            authority: `${lang.languageName}`,
+            authority:
+                <label>
+                {lang.languageName}
+                <Button onClick={() => {deleteForeignLanguage(lang.id)}} animated = 'fade' floated = 'right' size = 'small' color = 'red'>
+                    <Button.Content visible>DELETE</Button.Content>
+                    <Button.Content hidden><Icon name = 'trash'/></Button.Content>
+                </Button>
+                <Button onClick={() => {console.log("EDIT")}} animated = 'fade' color = 'yellow' size = 'small' floated = 'right' >
+                    <Button.Content visible>EDIT</Button.Content>
+                    <Button.Content hidden><Icon name = 'pencil'/></Button.Content>
+                </Button>
+                </label>,
             authorityMeta: `Level: ${lang.languageLevel}`
         }
     ))
 
     const educationTitle = <label>Educations <Link to = {`/educationadd/${cv.id}`}><Button animated = 'fade' color = 'blue' floated = 'right'>
-        <Button.Content visible>Add New Education</Button.Content>
+        <Button.Content visible>Add New</Button.Content>
         <Button.Content hidden><Icon name = 'add'/></Button.Content>
     </Button></Link></label>
 
     const experienceTitle = <label>Experiences <Link to = {`/experienceadd/${cv.id}`}><Button floated = 'right' color = 'blue' animated = 'fade'>
-        <Button.Content visible>Add New Experience</Button.Content>
+        <Button.Content visible>Add New</Button.Content>
         <Button.Content hidden><Icon name = 'add'/></Button.Content>
     </Button></Link></label>
 
     const languageTitle = <label>Languages <Link to = {`/languageadd/${cv.id}`}><Button animated = 'fade' floated = 'right' color = 'blue'>
-        <Button.Content visible>Add New Language</Button.Content>
+        <Button.Content visible>Add New</Button.Content>
         <Button.Content hidden><Icon name = 'add'/></Button.Content>
     </Button></Link></label>
 
-    const skillTitle = <label>Technologies or Programming Languages <Link to = {`/techorprogramminglangadd/${cv.id}`}><Button color = 'blue' animated = 'fade' floated = 'fade'>
-        <Button.Content visible>Add New Technologie</Button.Content>
+    const skillTitle = <label>Technologies or Programming Languages <Link to = {`/techorprogramminglangadd/${cv.id}`}><Button color = 'blue' animated = 'fade' floated = 'right'>
+        <Button.Content visible>Add New</Button.Content>
         <Button.Content hidden><Icon name = 'add'/></Button.Content>
     </Button></Link></label>
 
