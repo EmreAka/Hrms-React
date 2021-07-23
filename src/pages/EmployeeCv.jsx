@@ -48,7 +48,14 @@ export default function EmployeeCv() {
             title: edu.schoolName,
             authority: 'University',
             authorityWebSite: 'https://sample.edu',
-            rightSide: `${edu.beginDate} - ${edu.finishDate}`
+            rightSide:
+                <label>
+                    {edu.beginDate} - {edu.finishDate}
+                    <Button onClick={() => {console.log("DELETE")}} animated = 'fade' floated = 'right' size = 'small' color = 'red'>
+                        <Button.Content visible>DELETE</Button.Content>
+                        <Button.Content hidden><Icon name = 'trash'/></Button.Content>
+                    </Button>
+                </label>
         }
     ))
     
@@ -58,7 +65,14 @@ export default function EmployeeCv() {
             description: 'I\'m working as a lead developer yeeeey!',
             companyWebSite: 'http://somecompanyexample.com',
             companyMeta: '',
-            datesBetween: `${jobexp.beginDate} - ${jobexp.finishDate}`,
+            datesBetween:
+                <label>
+                    {jobexp.beginDate} - {jobexp.finishDate}
+                    <Button onClick={() => {console.log("DELETE")}} animated = 'fade' floated = 'right' size = 'small' color = 'red'>
+                        <Button.Content visible>DELETE</Button.Content>
+                        <Button.Content hidden><Icon name = 'trash'/></Button.Content>
+                    </Button>
+                </label>,
             descriptionTags: [`${jobexp.jobPosition.position}`]
           }
     ))
@@ -78,10 +92,6 @@ export default function EmployeeCv() {
                 <Button onClick={() => {deleteForeignLanguage(lang.id)}} animated = 'fade' floated = 'right' size = 'small' color = 'red'>
                     <Button.Content visible>DELETE</Button.Content>
                     <Button.Content hidden><Icon name = 'trash'/></Button.Content>
-                </Button>
-                <Button onClick={() => {console.log("EDIT")}} animated = 'fade' color = 'yellow' size = 'small' floated = 'right' >
-                    <Button.Content visible>EDIT</Button.Content>
-                    <Button.Content hidden><Icon name = 'pencil'/></Button.Content>
                 </Button>
                 </label>,
             authorityMeta: `Level: ${lang.languageLevel}`
@@ -110,7 +120,13 @@ export default function EmployeeCv() {
 
 
     const techsandprogs = techOrProgrammingLangs.map(techs => (
-        `${techs.technologyOrProgrammingLanguage}`
+        <label>
+            {techs.technologyOrProgrammingLanguage}
+            <Button onClick={() => {}} animated = 'fade' floated = 'right' size = 'mini' color = 'red'>
+                <Button.Content visible>DELETE</Button.Content>
+                <Button.Content hidden><Icon name = 'trash'/></Button.Content>
+            </Button>
+        </label>
     ))
 
     return (
