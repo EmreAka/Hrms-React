@@ -20,7 +20,7 @@ export default function Navi() {
         <div>
             <Menu fixed="top" size='tiny' inverted>
                 <Link to={`/home`}>
-                    <Button animated color='black'>
+                    <Button style={{marginTop: "1em"}} size = 'large' animated color='black'>
                         <Button.Content visible>Home</Button.Content>
                         <Button.Content hidden>
                             <Icon name='home' />
