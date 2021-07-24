@@ -45,6 +45,7 @@ const CvItem = ({edit, cvId}) => {
     const deleteEducation = async (id) => {
         let service = new EducationService()
         const response = await service.deleteByID(id)
+        service.getByCvId(cvId).then(result => setEducations(result.data.data))
         if (response.data.success) {
             toast.success(`${response.data.message}`, {
                 position: "bottom-left",
@@ -85,6 +86,7 @@ const CvItem = ({edit, cvId}) => {
     const deleteJobExperience = async (id) => {
         let service = new JobExperienceService()
         const response = await service.deleteById(id)
+        service.getJobExperienceServicesByCvId(cvId).then(result => setJobExperiences(result.data.data))
         if (response.data.success) {
             toast.success(`${response.data.message}`, {
                 position: "bottom-left",
@@ -189,6 +191,7 @@ const CvItem = ({edit, cvId}) => {
     const deleteTechnologyOrProgrammingLanguage = async (id) => {
         let service = new TechOrProgrammingLangService()
         const response = await service.deleteById(id)
+        service.getAllByCvId(cvId).then(result => setTechOrProgrammingLangs(result.data.data))
         if (response.data.success) {
             toast.success(`${response.data.message}`, {
                 position: "bottom-left",
