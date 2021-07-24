@@ -8,4 +8,8 @@ export default class TechOrProgrammingLangService{
     addTechOrProgrammingLangService(techOrProgrammingLangService){
         return axios.post("http://localhost:8080/api/TechnologyAndProgrammingLanguages/add", techOrProgrammingLangService)
     }
+
+    deleteById(id){
+        return axios.delete("http://localhost:8080/api/TechnologyAndProgrammingLanguages/deleteById?id=" + id)
+    }
 }

@@ -7,6 +7,7 @@ import ForeignLanguageService from "../services/foreignLanguageService";
 import {Button, Icon} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 import CV from "react-cv";
+import {toast} from "react-toastify";
 
 
 const CvItem = ({edit, cvId}) => {
@@ -41,6 +42,31 @@ const CvItem = ({edit, cvId}) => {
         foreignLanguageService.getAllByCvId(cvId).then(result => setForeignLanguages(result.data.data))
     }, [])
 
+    const deleteEducation = async (id) => {
+        let service = new EducationService()
+        const response = await service.deleteByID(id)
+        if (response.data.success) {
+            toast.success(`${response.data.message}`, {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        } else if (!response.data.success) {
+            toast.error(`${response.data.message}`, {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        }
+    }
     const edus = educations.map(edu => (
         {
             title: edu.schoolName,
@@ -49,14 +75,39 @@ const CvItem = ({edit, cvId}) => {
             rightSide:
                 <label>
                     {edu.beginDate} - {edu.finishDate}
-                    <Button onClick={() => {console.log("DELETE")}} animated = 'fade' floated = 'right' size = 'small' color = 'red'>
+                    <Button onClick={() => {deleteEducation(edu.id)}} animated = 'fade' floated = 'right' size = 'small' color = 'red'>
                         <Button.Content visible>DELETE</Button.Content>
                         <Button.Content hidden><Icon name = 'trash'/></Button.Content>
                     </Button>
                 </label>
         }
     ))
+    const deleteJobExperience = async (id) => {
+        let service = new JobExperienceService()
+        const response = await service.deleteById(id)
+        if (response.data.success) {
+            toast.success(`${response.data.message}`, {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        } else if (!response.data.success) {
+            toast.error(`${response.data.message}`, {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        }
 
+    }
     const exps = jobExperiences.map(jobexp => (
         {
             title: `${jobexp.workplaceName}`,
@@ -66,7 +117,7 @@ const CvItem = ({edit, cvId}) => {
             datesBetween:
                 <label>
                     {jobexp.beginDate} - {jobexp.finishDate}
-                    <Button onClick={() => {console.log("DELETE")}} animated = 'fade' floated = 'right' size = 'small' color = 'red'>
+                    <Button onClick={() => {deleteJobExperience(jobexp.id)}} animated = 'fade' floated = 'right' size = 'small' color = 'red'>
                         <Button.Content visible>DELETE</Button.Content>
                         <Button.Content hidden><Icon name = 'trash'/></Button.Content>
                     </Button>
@@ -77,9 +128,27 @@ const CvItem = ({edit, cvId}) => {
 
     const deleteForeignLanguage = async (id) => {
         let foreignLanguageService = new ForeignLanguageService()
-        const respond = await foreignLanguageService.deleteForeignLanguageById(id)
-        if (respond.data.success) {
-            console.log("Başarılı")
+        const response = await foreignLanguageService.deleteForeignLanguageById(id)
+        if (response.data.success) {
+            toast.success(`${response.data.message}`, {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        } else if (!response.data.success) {
+            toast.error(`${response.data.message}`, {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
         }
     }
     const langs = foreignLanguages.map(lang => (
@@ -116,11 +185,35 @@ const CvItem = ({edit, cvId}) => {
         <Button.Content hidden><Icon name = 'add'/></Button.Content>
     </Button></Link></label>
 
-
+    const deleteTechnologyOrProgrammingLanguage = async (id) => {
+        let service = new TechOrProgrammingLangService()
+        const response = await service.deleteById(id)
+        if (response.data.success) {
+            toast.success(`${response.data.message}`, {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        } else if (!response.data.success) {
+            toast.error(`${response.data.message}`, {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        }
+    }
     const techsandprogs = techOrProgrammingLangs.map(techs => (
         <label>
             {techs.technologyOrProgrammingLanguage}
-            <Button onClick={() => {}} animated = 'fade' floated = 'right' size = 'mini' color = 'red'>
+            <Button onClick={() => {deleteTechnologyOrProgrammingLanguage(techs.id)}} animated = 'fade' floated = 'right' size = 'mini' color = 'red'>
                 <Button.Content visible>DELETE</Button.Content>
                 <Button.Content hidden><Icon name = 'trash'/></Button.Content>
             </Button>
@@ -130,8 +223,7 @@ const CvItem = ({edit, cvId}) => {
     if (edit) {
         return <CV
             personalData={{
-                name: cv.employee?.firstName,
-                title: cv.description,
+                name: `${cv.employee?.firstName} ${cv.employee?.lastName}`,
                 image: cv.photo,
                 contacts: [
                     { type: 'email', value: cv.employee?.email },
@@ -142,7 +234,7 @@ const CvItem = ({edit, cvId}) => {
             sections={[{
                 type: 'text',
                 title: 'Career Profile',
-                content: 'When I was child, I always want to be a developer.',
+                content: cv.description,
                 icon: 'usertie'
             },
                 {
@@ -175,8 +267,7 @@ const CvItem = ({edit, cvId}) => {
     }
     return <CV
         personalData={{
-            name: cv.employee?.firstName,
-            title: cv.description,
+            name: `${cv.employee?.firstName} ${cv.employee?.lastName}`,
             image: cv.photo,
             contacts: [
                 { type: 'email', value: cv.employee?.email },
@@ -187,7 +278,7 @@ const CvItem = ({edit, cvId}) => {
         sections={[{
             type: 'text',
             title: 'Career Profile',
-            content: 'When I was child, I always want to be a developer.',
+            content: cv.description,
             icon: 'usertie'
         },
             {
@@ -199,7 +290,7 @@ const CvItem = ({edit, cvId}) => {
                         title: edu.schoolName,
                         authority: 'University',
                         authorityWebSite: 'https://sample.edu',
-                        rightSide: `${edu.beginDate} - ${edu.finishDate}`
+                        rightSide: `${edu.beginDate} - ${edu.finishDate === null ? 'Still Continue' : edu.finishDate}`
                     }
                 ))
             },
@@ -213,7 +304,7 @@ const CvItem = ({edit, cvId}) => {
                         description: 'I\'m working as a lead developer yeeeey!',
                         companyWebSite: 'http://somecompanyexample.com',
                         companyMeta: '',
-                        datesBetween: `${jobexp.beginDate} - ${jobexp.finishDate}`,
+                        datesBetween: `${jobexp.beginDate} - ${jobexp.finishDate === null ? 'Still Continue' : jobexp.finishDate}`,
                         descriptionTags: [`${jobexp.jobPosition.position}`]
                     }
                 ))
