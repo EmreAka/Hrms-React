@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import EmployeeService from "../services/employeeService";
-import { Button, Header, Icon, Table } from "semantic-ui-react";
+import {Button, Card, Icon} from "semantic-ui-react";
 import { Link } from 'react-router-dom';
 export default function EmployeeList() {
 
@@ -12,40 +12,26 @@ export default function EmployeeList() {
 
     return (
         <div>
-            <Header as="h2">
-                <Icon name="list alternate outline" />
-                <Header.Content>Employee List</Header.Content>
-            </Header>
-            <Table celled color='grey' inverted>
-                <Table.Header>
-                    <Table.Row>
-                        <Table.HeaderCell>First Name</Table.HeaderCell>
-                        <Table.HeaderCell>Last Name</Table.HeaderCell>
-                        <Table.HeaderCell>Birth Year</Table.HeaderCell>
-                        <Table.HeaderCell>View Cvs</Table.HeaderCell>
-                    </Table.Row>
-                </Table.Header>
+            <Card fluid color = 'black'>
+                <Card.Content header = 'Employee List'/>
+                {employees.map(item => {
+                    return <Card.Content>
+                        <Card.Header>{item.firstName} {item.lastName}</Card.Header>
+                        <Card.Meta>
+                            <span className='date'>{item.birthYear}</span>
+                        </Card.Meta>
+                        <Card.Description>
+                            <Link to={`/employees/${item.id}`}>
+                                <Button floated = 'right' animated color='black'>
+                                    <Button.Content visible>View Cvs</Button.Content>
+                                    <Button.Content hidden><Icon name='arrow right' /></Button.Content>
+                                </Button>
+                            </Link>
+                        </Card.Description>
+                    </Card.Content>
+                })}
 
-                <Table.Body>
-                    {
-                        employees.map(employee => (
-                            <Table.Row key={employee.id}>
-                                <Table.Cell>{employee.firstName}</Table.Cell>
-                                <Table.Cell>{employee.lastName}</Table.Cell>
-                                <Table.Cell>{employee.birthYear}</Table.Cell>
-                                <Table.Cell>
-                                    <Link to={`/employees/${employee.id}`}>
-                                        <Button animated color='black'>
-                                            <Button.Content visible>View Cvs</Button.Content>
-                                            <Button.Content hidden><Icon name='arrow right' /></Button.Content>
-                                        </Button>
-                                    </Link>
-                                </Table.Cell>
-                            </Table.Row>
-                        ))
-                    }
-                </Table.Body>
-            </Table>
+            </Card>
         </div>
     )
 }
