@@ -129,6 +129,7 @@ const CvItem = ({edit, cvId}) => {
     const deleteForeignLanguage = async (id) => {
         let foreignLanguageService = new ForeignLanguageService()
         const response = await foreignLanguageService.deleteForeignLanguageById(id)
+        foreignLanguageService.getAllByCvId(cvId).then(result => setForeignLanguages(result.data.data))
         if (response.data.success) {
             toast.success(`${response.data.message}`, {
                 position: "bottom-left",

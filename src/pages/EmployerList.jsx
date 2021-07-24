@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import EmployerService from '../services/employerService'
-import { Icon, Table, Button, Header } from 'semantic-ui-react'
+import {Icon, Button, Card} from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 export default function EmployerList() {
@@ -15,66 +15,27 @@ export default function EmployerList() {
 
     return (
         <div>
-            <Header as="h2">
-                <Icon name="list alternate outline" />
-                <Header.Content>Employer List</Header.Content>
-            </Header>
-            <Table celled color = 'grey' inverted>
-                <Table.Header>
-                    <Table.Row>
-                        <Table.HeaderCell>Campany Name</Table.HeaderCell>
-                        <Table.HeaderCell>Web Site</Table.HeaderCell>
-                        <Table.HeaderCell>Phone Numbers</Table.HeaderCell>
-                        <Table.HeaderCell>View Job Advertisements</Table.HeaderCell>
-                    </Table.Row>
-                </Table.Header>
-
-                <Table.Body>
-                    {
-                        employers.map(employer => (
-
-                            <Table.Row key={employer.id}>
-                                <Table.Cell>{employer.companyName}</Table.Cell>
-                                <Table.Cell>{employer.webSite}</Table.Cell>
-                                <Table.Cell>{employer.phoneNumber}</Table.Cell>
-                                <Table.Cell>
-                                    <Link to={`/employers/${employer.id}`}>
-                                        <Button animated color = 'black'>
-                                            <Button.Content visible>View Job Advertisements</Button.Content>
-                                            <Button.Content hidden>
-                                                <Icon name='arrow right' />
-                                            </Button.Content>
-                                        </Button>
-                                    </Link>
-                                </Table.Cell>
-                            </Table.Row>
-
-
-
-                        ))
-                    }
-
-                </Table.Body>
-
-                {/* <Table.Footer>
-                    <Table.Row>
-                        <Table.HeaderCell colSpan='3'>
-                            <Menu floated='right' pagination>
-                                <Menu.Item as='a' icon>
-                                    <Icon name='chevron left' />
-                                </Menu.Item>
-                                <Menu.Item as='a'>1</Menu.Item>
-                                <Menu.Item as='a'>2</Menu.Item>
-                                <Menu.Item as='a'>3</Menu.Item>
-                                <Menu.Item as='a'>4</Menu.Item>
-                                <Menu.Item as='a' icon>
-                                    <Icon name='chevron right' />
-                                </Menu.Item>
-                            </Menu>
-                        </Table.HeaderCell>
-                    </Table.Row>
-                </Table.Footer> */}
-            </Table>
+            <Card fluid color = 'black'>
+                <Card.Content header = 'Employer List'/>
+                {employers.map(item => {
+                    return <Card.Content>
+                        <Card.Header>{item.companyName}</Card.Header>
+                        <Card.Meta>{item.phoneNumber}</Card.Meta>
+                        <Card.Description>
+                            {item.webSite} <Link to={`/employers/${item.id}`}>
+                                <Button floated = 'right' animated color = 'black'>
+                                    <Button.Content visible>View Job Advertisements</Button.Content>
+                                    <Button.Content hidden>
+                                        <Icon name='arrow right' />
+                                    </Button.Content>
+                                </Button>
+                            </Link>
+                        </Card.Description>
+                    </Card.Content>
+                })}
+            </Card>
         </div>
     )
 }
+/*
+<*/
