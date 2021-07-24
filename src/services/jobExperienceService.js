@@ -8,4 +8,8 @@ export default class JobExperienceService{
     addJobExperience(jobExperience){
         return axios.post("http://localhost:8080/api/jobExperiences/add", jobExperience)
     }
+
+    deleteById(id){
+        return axios.delete("http://localhost:8080/api/jobExperiences/deleteById?id=" + id)
+    }
 }
