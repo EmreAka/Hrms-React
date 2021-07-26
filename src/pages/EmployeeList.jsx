@@ -22,7 +22,7 @@ export default function EmployeeList() {
                         </Card.Meta>
                         <Card.Description>
                             <Link to={`/employees/${item.id}`}>
-                                <Button floated = 'right' animated color='black'>
+                                <Button floated = 'right' animated color='grey'>
                                     <Button.Content visible>View Cvs</Button.Content>
                                     <Button.Content hidden><Icon name='arrow right' /></Button.Content>
                                 </Button>

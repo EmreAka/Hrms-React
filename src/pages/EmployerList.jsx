@@ -23,7 +23,7 @@ export default function EmployerList() {
                         <Card.Meta>{item.phoneNumber}</Card.Meta>
                         <Card.Description>
                             {item.webSite} <Link to={`/employers/${item.id}`}>
-                                <Button floated = 'right' animated color = 'black'>
+                                <Button floated = 'right' animated color = 'grey'>
                                     <Button.Content visible>View Job Advertisements</Button.Content>
                                     <Button.Content hidden>
                                         <Icon name='arrow right' />

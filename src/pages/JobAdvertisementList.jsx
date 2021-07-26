@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {Icon, Header, Pagination, Menu, Dropdown, Button} from 'semantic-ui-react'
+import {Icon, Header, Pagination, Menu, Dropdown, Button, Card} from 'semantic-ui-react'
 import JobAdvertisementService from '../services/jobAdvertisementService'
 
 import JobAdvertisementsItem from "../components/JobAdvertisementsItem";
@@ -47,12 +47,12 @@ export default function JobAdvertisement() {
                 </Dropdown>
             </Menu>
 
-            <Header as="h2">
-                <Icon name="list alternate outline" />
-                <Header.Content>Job List</Header.Content>
-            </Header>
-
-            <JobAdvertisementsItem jobAdvertisements={currentJobAdvertisements} loading={Loading} />
+            <Card fluid>
+                <Card.Content header = 'Job List'/>
+                <Card.Content>
+                    <JobAdvertisementsItem jobAdvertisements={currentJobAdvertisements} loading={Loading} />
+                </Card.Content>
+            </Card>
 
             <Pagination defaultActivePage={1} totalPages={totalPages} onPageChange={(event, data) => {setCurrentPage(data.activePage)}} />
         </div>
