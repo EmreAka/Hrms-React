@@ -24,7 +24,7 @@ export default function EmployerDetails() {
                         <Card.Description>
                             {item.description}
                             <Link to={`/jobs/${item.id}`}>
-                            <Button floated = 'right' animated color = 'black'>
+                            <Button floated = 'right' animated color = 'grey'>
                                 <Button.Content visible>View</Button.Content>
                                 <Button.Content hidden><Icon name='arrow right' />
                                 </Button.Content>
